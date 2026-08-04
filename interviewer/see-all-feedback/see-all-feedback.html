@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="feedback-container">
+  <h2>Interviewer Feedback</h2>
+
+  <div *ngIf="message" class="error">{{ message }}</div>
+
+  <div *ngIf="feedbackData && feedbackData.totalFeedbacks > 0">
+    <p><strong>Total Feedbacks:</strong> {{ feedbackData.totalFeedbacks }}</p>
+
+    <table class="feedback-table">
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Comments</th>
+          <th>Submitted At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fb of feedbackData.feedbackDetails">
+          <td>{{ fb.rating }}</td>
+          <td>{{ fb.comments }}</td>
+          <td>{{ fb.submittedAt | date:'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/interviewer-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

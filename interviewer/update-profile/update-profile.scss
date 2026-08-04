@@ -1,0 +1,283 @@
+
+/* === TALENTLYX — Sci‑Fi Corporate (Green) for Update Profile ===
+   Dark emerald base, neon accents, glass form, accessible focus, responsive layout.
+*/
+
+/* Base + Background */
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(80, 255, 170, 0.10), transparent 65%),
+    radial-gradient(900px 450px at 90% 20%, rgba(80, 255, 170, 0.08), transparent 70%),
+    linear-gradient(180deg, #0c1a12 0%, #0f2317 50%, #11271b 100%);
+  color: #d9fbe7;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle sci‑fi grid overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(90, 200, 140, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 200, 140, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Neon accent line at top */
+:host::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  opacity: 0.8;
+}
+
+/* Container */
+.update-container {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 22px 56px;
+}
+
+/* Heading */
+.update-container h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #c9ffde;
+  text-shadow:
+    0 0 6px rgba(56, 239, 125, 0.25),
+    0 2px 14px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated scanline under heading (subtle motion) */
+.update-container h2::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  animation: scanline 4.5s linear infinite;
+  opacity: 0.7;
+}
+@keyframes scanline {
+  0%   { transform: translateX(-30%); }
+  50%  { transform: translateX(30%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Form wrapper — glass panel */
+.update-form {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(120, 255, 190, 0.28);
+  border-radius: 16px;
+  padding: 18px 18px 22px;
+  backdrop-filter: blur(10px) saturate(120%);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.34),
+    0 0 12px rgba(56, 239, 125, 0.12);
+}
+
+/* Grid layout for fields (responsive) */
+.update-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px 16px;
+}
+
+@media (min-width: 700px) {
+  .update-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Make checkbox + submit span full width on larger screens */
+  .checkbox-group,
+  button[type="submit"] {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-group > label {
+  margin-bottom: 6px;
+  color: #cdeedb;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Inputs — dark glass fields */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"] {
+  background: rgba(10, 20, 15, 0.6);
+  color: #eafff2;
+  border: 1px solid rgba(120, 255, 190, 0.28);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: inset 0 0 0.8px rgba(200, 255, 220, 0.22);
+  transition: border-color 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.form-group input::placeholder {
+  color: rgba(226, 255, 242, 0.6);
+}
+
+.form-group input:focus {
+  background: rgba(14, 26, 19, 0.7);
+  color: #eafff2;
+  border-color: rgba(120, 255, 190, 0.45);
+  box-shadow:
+    0 0 0 0.2rem rgba(56, 239, 125, 0.18),
+    inset 0 0 1px rgba(200, 255, 220, 0.35);
+  outline: none;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(120, 255, 190, 0.22);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0.8px rgba(200, 255, 220, 0.18);
+}
+
+.checkbox-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cdeedb;
+  font-weight: 600;
+}
+
+.checkbox-group input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  border-radius: 4px;
+  background-color: rgba(10, 20, 15, 0.65);
+  position: relative;
+  transition: box-shadow 140ms ease, border-color 140ms ease, filter 140ms ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: #1f8f53;
+  border-color: rgba(120, 255, 190, 0.55);
+  box-shadow: 0 0 10px rgba(56, 239, 125, 0.45);
+}
+
+/* Submit button — neon disciplined */
+button[type="submit"] {
+  margin-top: 6px;
+  background: linear-gradient(180deg, #1f8f53, #176c3f);
+  color: #ffffff;
+  border: 1px solid rgba(56, 239, 125, 0.35);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow:
+    0 10px 20px rgba(23, 108, 63, 0.35),
+    0 0 8px rgba(56, 239, 125, 0.25);
+  transition: transform 120ms ease, box-shadow 140ms ease, filter 140ms ease, opacity 140ms ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 12px 22px rgba(23, 108, 63, 0.42),
+    0 0 12px rgba(56, 239, 125, 0.4);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Message (feedback) */
+.message {
+  margin: 16px 2px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #eafff2;
+  background: linear-gradient(180deg, rgba(56, 239, 125, 0.12), rgba(56, 239, 125, 0.08));
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.28),
+    inset 0 0 0.8px rgba(200, 255, 220, 0.35);
+}
+
+/* Inline validation (template-driven forms) */
+input.ng-invalid.ng-touched {
+  border-color: rgba(255, 120, 120, 0.55);
+  box-shadow: 0 0 0 0.2rem rgba(255, 120, 120, 0.18);
+}
+input.ng-valid.ng-touched {
+  border-color: rgba(120, 255, 190, 0.55);
+  box-shadow: 0 0 0 0.2rem rgba(56, 239, 125, 0.18);
+}
+
+/* Accessibility focus ring */
+.update-container :focus-visible {
+  outline: 3px solid rgba(167, 243, 208, 0.85);
+  outline-offset: 2px;
+}
+
+/* Responsive container padding */
+@media (max-width: 480px) {
+  .update-container { padding: 28px 14px 44px; }
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .update-container h2::after { animation: none !important; }
+}
+
+.back-btn-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: linear-gradient(180deg, #1f8f53, #176c3f); /* Green gradient */
+  color: #fff;
+  font-size: 0.85rem; /* Smaller, elegant */
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(23, 108, 63, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: linear-gradient(180deg, #38ef7d, #1f8f53); /* Neon green hover */
+  box-shadow: 0 8px 18px rgba(56, 239, 125, 0.5);
+  transform: translateY(-2px);
+}

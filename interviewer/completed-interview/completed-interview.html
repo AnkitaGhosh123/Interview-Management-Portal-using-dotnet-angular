@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="complete-container">
+  <h2>Mark Interviews as Completed</h2>
+  <div *ngIf="message" class="message">{{ message }}</div>
+
+  <table *ngIf="candidates.length > 0" class="candidate-table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <!-- <th>ID</th> -->
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skill Set</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidate of candidates">
+        <td>
+          <input type="checkbox"
+                 [disabled]="candidate.completed"
+                 [(ngModel)]="candidate.selected"
+                 (change)="onSelect(candidate)" />
+        </td>
+        <!-- <td>{{ candidate.candidateId }}</td> -->
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.email }}</td>
+        <td>{{ candidate.skillSet }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="markCompleted()" [disabled]="selectedCandidates.length === 0">
+    Confirm Completion
+  </button>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/interviewer-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

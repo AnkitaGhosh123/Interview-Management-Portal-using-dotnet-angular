@@ -1,0 +1,75 @@
+
+
+
+<!-- <nav class="navbar">
+  <div class="navbar-brand">TALENTLYX</div>
+  <ul class="navbar-links">
+    <li><a routerLink="/interviewer-home">Home</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</nav> -->
+<app-header></app-header>
+<div class="page-wrapper">
+  <!-- Header -->
+  <header class="header-section">
+    <h2 class="section-title">Quick Actions</h2>
+    <p class="section-subtitle">Manage your interviews and profile efficiently.</p>
+  </header>
+
+  <!-- User Info Card -->
+  <div class="user-card">
+    <h3>Welcome, {{ userName || 'Interviewer' }}</h3>
+    
+  </div>
+
+  <!-- Stats Section -->
+  <div class="stat-card">
+  
+
+<div class="portal-info">
+  <p class="portal-title">As an interviewer, you can</p>
+  <ul class="portal-list">
+    <li>✔ Manage your profile and credentials</li>
+    <li>✔ Access assigned candidates and their details</li>
+    <li>✔ Check feedback and evaluations</li>
+    <li>✔ Make hiring decisions confidently</li>
+    <li>✔ Track completed and upcoming interviews</li>
+    <li>✔ Reschedule interviews</li>
+  </ul>
+</div>
+
+
+  
+  </div>
+  <br>
+
+  <!-- Button Grid -->
+  <div class="home-container">
+    <div class="button-grid">
+      <button class="cute-btn" (click)="navigateTo('/profile')">
+        <i class="fas fa-user"></i> Profile
+      </button>
+      <button class="cute-btn" (click)="navigateTo('/see-all-feedback')">
+        <i class="fas fa-comments"></i> Feedback
+      </button>
+      <button class="cute-btn" (click)="navigateTo('/assigned-candidates')">
+        <i class="fas fa-users"></i> Assigned Candidates
+      </button>
+      <button class="cute-btn" (click)="navigateTo('/update-profile')">
+        <i class="fas fa-edit"></i> Update Profile
+      </button>
+      <button class="cute-btn" (click)="navigateTo('/decision')">
+        <i class="fas fa-check-circle"></i> Give Decision
+      </button>
+      <button class="cute-btn" (click)="navigateTo('/completed-interview')">
+        <i class="fas fa-clipboard-check"></i> Mark Complete
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TALENTLYX | Empowering Careers</p>
+  </footer>
+</div>

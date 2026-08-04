@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="decision-container">
+  <h2>Give Decision for Completed Interviews</h2>
+
+  <div *ngIf="loading">Loading candidates...</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div *ngIf="!loading && candidates && candidates.length === 0">
+    No completed candidates available.
+  </div>
+
+  <div *ngIf="!loading && candidates && candidates.length > 0">
+    <div *ngFor="let candidate of candidates" class="candidate-card">
+      <p><strong>{{ candidate.name }}</strong> ({{ candidate.skillSet }})</p>
+      <p>Email: {{ candidate.email }}</p>
+      <p>Experience: {{ candidate.totalYearsOfExperience }} years</p>
+      <button class="btn btn-success" (click)="acceptCandidate(candidate.candidateId)">Accept Candidate</button>
+      <button class="btn btn-danger" (click)="rejectCandidate(candidate.candidateId)">Reject Candidate</button>
+    </div>
+  </div>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/interviewer-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

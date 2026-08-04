@@ -1,0 +1,205 @@
+
+/* === TALENTLYX — Sci‑Fi Corporate (Green) for Interviewer Profile ===
+   Dark emerald base, neon accents, glass card, accessible focus, responsive layout.
+*/
+
+/* Base + Background */
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(80, 255, 170, 0.10), transparent 65%),
+    radial-gradient(900px 450px at 90% 20%, rgba(80, 255, 170, 0.08), transparent 70%),
+    linear-gradient(180deg, #0c1a12 0%, #0f2317 50%, #11271b 100%);
+  color: #d9fbe7;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle sci‑fi grid overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(90, 200, 140, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 200, 140, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Neon accent line at top */
+:host::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  opacity: 0.8;
+}
+
+/* Container */
+.profile-container {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 22px 56px;
+}
+
+/* Heading */
+.profile-container h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #c9ffde;
+  text-shadow:
+    0 0 6px rgba(56, 239, 125, 0.25),
+    0 2px 14px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated scanline under heading (subtle motion) */
+.profile-container h2::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  animation: scanline 4.5s linear infinite;
+  opacity: 0.7;
+}
+@keyframes scanline {
+  0%   { transform: translateX(-30%); }
+  50%  { transform: translateX(30%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Message (info/success) */
+.message {
+  margin: 14px 0 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #eafff2;
+  background: linear-gradient(180deg, rgba(56, 239, 125, 0.12), rgba(56, 239, 125, 0.08));
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.28),
+    inset 0 0 0.8px rgba(200, 255, 220, 0.35);
+}
+
+/* Profile details card (glass) */
+.profile-details {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(120, 255, 190, 0.28);
+  border-radius: 16px;
+  padding: 18px 20px;
+  backdrop-filter: blur(10px) saturate(120%);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.34),
+    0 0 12px rgba(56, 239, 125, 0.12);
+}
+
+/* Details layout — responsive two-column on larger screens */
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 16px;
+}
+
+@media (min-width: 680px) {
+  .profile-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Each line */
+.profile-details p {
+  margin: 0;
+  color: #cdeedb;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+/* Label styling */
+.profile-details p strong {
+  color: #b6ffcf;
+  min-width: 160px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Value styling */
+.profile-details p span,
+.profile-details p {
+  font-weight: 600;
+}
+
+/* Emphasis for boolean/availability */
+.profile-details p:nth-child(7) {
+  /* Available: … line (7th) */
+  color: #eafff2;
+  text-shadow:
+    0 0 6px rgba(56, 239, 125, 0.20),
+    0 2px 12px rgba(0, 0, 0, 0.30);
+}
+
+/* Date line subtler tone */
+.profile-details p:last-child {
+  color: #a6eec8;
+}
+
+/* Footer spacing (if you add one later) */
+footer {
+  margin-top: 28px;
+  text-align: center;
+  color: #a6eec8;
+  font-size: 0.94rem;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(100, 255, 180, 0.35);
+}
+
+/* Accessibility focus ring */
+.profile-container :focus-visible {
+  outline: 3px solid rgba(167, 243, 208, 0.9);
+  outline-offset: 2px;
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .profile-container h2::after { animation: none !important; }
+}
+
+
+.back-btn-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: linear-gradient(180deg, #1f8f53, #176c3f); /* Green gradient */
+  color: #fff;
+  font-size: 0.85rem; /* Smaller, elegant */
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(23, 108, 63, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: linear-gradient(180deg, #38ef7d, #1f8f53); /* Neon green hover */
+  box-shadow: 0 8px 18px rgba(56, 239, 125, 0.5);
+  transform: translateY(-2px);
+}

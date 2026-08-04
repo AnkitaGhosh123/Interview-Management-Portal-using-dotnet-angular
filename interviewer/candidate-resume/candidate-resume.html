@@ -1,0 +1,21 @@
+<div class="resume-container">
+  <h2>Download Candidate Resume</h2>
+
+  <form (ngSubmit)="downloadResume()" #resumeForm="ngForm" class="resume-form">
+    <div class="form-group">
+      <label for="candidateId">Candidate ID</label>
+      <input
+        type="number"
+        id="candidateId"
+        name="candidateId"
+        [(ngModel)]="candidateId"
+        required
+        placeholder="Enter Candidate ID"
+      />
+    </div>
+
+    <button type="submit" [disabled]="resumeForm.invalid">Download Resume</button>
+  </form>
+
+  <p class="message">{{ message }}</p>
+</div>

@@ -1,0 +1,83 @@
+<div class="container mt-5" *ngIf="!isSubmitted">
+  <h2 class="text-primary mb-4">Interviewer Registration</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <!-- Full Name -->
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control" formControlName="fullName" placeholder="Enter full name" />
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Enter email" />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Enter password" />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm password" />
+
+      <div *ngIf="registerForm.errors?.['mismatch']" class="text-danger mt-1">
+        Passwords do not match.
+
+      </div>
+    </div>
+
+    <!-- Skill Set -->
+    <div class="mb-3">
+      <label class="form-label">Skill Set</label>
+      <input type="text" class="form-control" formControlName="skillSet" placeholder="e.g., Java, Angular, SQL" />
+    </div>
+
+    <!-- Level Dropdown -->
+    <div class="mb-3">
+      <label class="form-label">Level</label>
+      <select class="form-select" formControlName="level">
+        <option value="" disabled>Select Level</option>
+        <option *ngFor="let lvl of levels" [value]="lvl">{{ lvl }}</option>
+      </select>
+    </div>
+
+    <!-- Years of Experience -->
+    <div class="mb-3">
+      <label class="form-label">Years of Experience</label>
+      <input type="number" class="form-control" formControlName="yearsOfExperience" placeholder="Enter years" />
+    </div>
+
+    <!-- Interview Type Dropdown -->
+    <div class="mb-3">
+      <label class="form-label">Interview Type</label>
+      <select class="form-select" formControlName="interviewType">
+        <option value="" disabled>Select Interview Type</option>
+        <option *ngFor="let type of interviewTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+
+    <!-- Availability Checkbox -->
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" formControlName="isAvailable" id="isAvailable">
+      <label class="form-check-label" for="isAvailable">Available for taking interviews</label>
+    </div>
+
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">
+      Register
+    </button>
+  </form>
+</div>
+
+<!-- Success Message -->
+<div class="alert alert-success mt-5 text-center" *ngIf="isSubmitted">
+  <h4>Your registration request has been submitted and is pending approval by SuperAdmin.</h4>
+  <p>Thank you for your patience.</p>
+</div>

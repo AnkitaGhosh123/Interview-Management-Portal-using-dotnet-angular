@@ -1,0 +1,28 @@
+
+
+<app-header></app-header>
+<div class="profile-container">
+  <h2>Interviewer Profile</h2>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+
+  <div *ngIf="profile" class="profile-details">
+    <p><strong>Name:</strong> {{ profile.fullName }}</p>
+    <p><strong>Email:</strong> {{ profile.email }}</p>
+    <p><strong>Skill Set:</strong> {{ profile.skillSet }}</p>
+    <p><strong>Level:</strong> {{ profile.level }}</p>
+    <p><strong>Years of Experience:</strong> {{ profile.yearsOfExperience }}</p>
+    <p><strong>Interview Type:</strong> {{ profile.interviewType }}</p>
+    <p><strong>Available:</strong> {{ profile.isAvailable ? 'Yes' : 'No' }}</p>
+    <p><strong>Joined At:</strong> {{ profile.joinedAt | date:'medium' }}</p>
+  </div>
+  
+<!-- ✅ Move button inside -->
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/interviewer-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+
+</div>
+

@@ -1,0 +1,24 @@
+<div class="role-check-container">
+  <h2>Check Interviewer Role</h2>
+
+  <form (ngSubmit)="onCheckRole()" #roleForm="ngForm" class="role-check-form">
+    <!-- Interviewer ID -->
+    <div class="form-group">
+      <label for="interviewerId">Interviewer ID</label>
+      <input
+        type="number"
+        id="interviewerId"
+        name="interviewerId"
+        [(ngModel)]="interviewerId"
+        required
+        placeholder="Enter interviewer ID"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="roleForm.invalid">Check Role</button>
+  </form>
+
+  <!-- Message -->
+  <p class="message">{{ message }}</p>
+</div>

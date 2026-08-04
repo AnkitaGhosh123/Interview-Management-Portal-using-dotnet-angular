@@ -1,0 +1,224 @@
+
+/* === TALENTLYX — Sci‑Fi Corporate (Green) ===
+   Design: Futuristic grid, neon accents, glass cards, enterprise typography.
+   Scope: Component-level via :host (works with Angular Emulated encapsulation).
+*/
+
+/* Base + Background */
+:host {
+  display: block;
+  min-height: 100vh;
+  /* Dark emerald base with subtle vignette & grid glow */
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(80, 255, 170, 0.10), transparent 65%),
+    radial-gradient(900px 450px at 90% 20%, rgba(80, 255, 170, 0.08), transparent 70%),
+    linear-gradient(180deg, #0c1a12 0%, #0f2317 50%, #11271b 100%);
+  color: #d9fbe7;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle sci‑fi grid overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(90, 200, 140, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 200, 140, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Neon scanline accent at top */
+:host::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  opacity: 0.8;
+}
+
+/* Layout container */
+.home-container {
+  position: relative;
+  z-index: 1; /* above overlays */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 44px 22px 60px;
+}
+
+/* Header */
+header { text-align: center; }
+header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #c9ffde;
+  text-shadow:
+    0 0 6px rgba(56, 239, 125, 0.25),
+    0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Subtle subtitle with mono accent caps */
+.subtitle {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #a6eec8;
+  letter-spacing: 0.2px;
+}
+
+/* Intro (glass card) */
+.intro {
+  margin: 26px auto 30px;
+  max-width: 780px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(120, 255, 180, 0.25);
+  border-radius: 16px;
+  padding: 18px 20px;
+  backdrop-filter: blur(10px) saturate(120%);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.35),
+    inset 0 0 0.8px rgba(200, 255, 220, 0.35);
+}
+
+.intro p {
+  margin: 0;
+  color: #e4fff2;
+}
+
+/* Options grid */
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) { .options { grid-template-columns: 1fr; } }
+
+/* Cards — glass with neon rim */
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(100, 255, 180, 0.28);
+  border-radius: 16px;
+  padding: 18px 18px 20px;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.32),
+    0 0 12px rgba(56, 239, 125, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 40px rgba(0, 0, 0, 0.36),
+    0 0 16px rgba(56, 239, 125, 0.22);
+  border-color: rgba(120, 255, 190, 0.48);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.22rem;
+  color: #b6ffcf;
+  letter-spacing: 0.2px;
+}
+
+.card p {
+  margin: 0 0 14px;
+  color: #cdeedb;
+}
+
+/* Buttons — corporate disciplined, sci‑fi glow */
+button,
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 120ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+/* Primary: deep green with neon edge */
+.btn.btn-primary {
+  background: linear-gradient(180deg, #1f8f53, #176c3f);
+  color: #ffffff;
+  box-shadow:
+    0 10px 20px rgba(23, 108, 63, 0.35),
+    0 0 8px rgba(56, 239, 125, 0.25);
+  border: 1px solid rgba(56, 239, 125, 0.35);
+}
+.btn.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 12px 22px rgba(23, 108, 63, 0.42),
+    0 0 10px rgba(56, 239, 125, 0.35);
+}
+
+/* Secondary: outline glass with mint surface */
+.btn.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #c9ffde;
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(200, 255, 220, 0.15);
+}
+.btn.btn-secondary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+/* Footer — subtle neon divider */
+footer {
+  margin-top: 38px;
+  text-align: center;
+  color: #a6eec8;
+  font-size: 0.94rem;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(100, 255, 180, 0.35);
+}
+
+/* Legacy button grid (if you ever re-enable it) */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cute-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #c9ffde;
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  transition: transform 120ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+.cute-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+}
+
+/* Focus Ring — ADA friendly, neon mint */
+button:focus-visible,
+.btn:focus-visible,
+.cute-btn:focus-visible {
+  outline: 3px solid rgba(167, 243, 208, 0.9);
+  outline-offset: 3px;
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

@@ -1,0 +1,42 @@
+
+<app-header></app-header>
+<div class="assigned-container">
+  <h2>Assigned Candidates</h2>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+
+  <table *ngIf="candidates.length > 0" class="candidate-table">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skill Set</th>
+        <th>Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidate of candidates">
+        <!-- <td>{{ candidate.candidateId }}</td> -->
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.email }}</td>
+        <td>{{ candidate.skillSet }}</td>
+        <td>{{ candidate.totalYearsOfExperience }} yrs</td>
+
+        <td>
+          <button [routerLink]="['/reschedule', candidate.candidateId]">Reschedule</button>
+
+          <a [href]="candidate.resumeUrl" target="_blank" class="btn">View Resume</a>
+          <!-- <button (click)="downloadResume(candidate.candidateId)">Download</button> -->
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/interviewer-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

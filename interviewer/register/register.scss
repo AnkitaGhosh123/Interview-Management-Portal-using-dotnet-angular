@@ -1,0 +1,179 @@
+
+/* === TALENTLYX — Sci‑Fi Corporate (Green) for Registration ===
+   Works alongside Bootstrap: styles target your classes without breaking defaults.
+*/
+
+/* Base + Background */
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(80, 255, 170, 0.10), transparent 65%),
+    radial-gradient(900px 450px at 90% 20%, rgba(80, 255, 170, 0.08), transparent 70%),
+    linear-gradient(180deg, #0c1a12 0%, #0f2317 50%, #11271b 100%);
+  color: #d9fbe7;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle sci‑fi grid overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(90, 200, 140, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 200, 140, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Neon accent line at top */
+:host::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #38ef7d, transparent);
+  filter: drop-shadow(0 0 6px rgba(56, 239, 125, 0.6));
+  opacity: 0.8;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+}
+
+/* Heading */
+h2.text-primary {
+  /* override Bootstrap's primary for sci‑fi mint */
+  color: #c9ffde !important;
+  text-shadow:
+    0 0 6px rgba(56, 239, 125, 0.25),
+    0 2px 14px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.3px;
+  font-weight: 800;
+}
+
+/* Form wrapper — glass card */
+form {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(120, 255, 190, 0.28);
+  border-radius: 16px;
+  padding: 22px 22px 24px;
+  backdrop-filter: blur(10px) saturate(120%);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(56, 239, 125, 0.12);
+}
+
+/* Labels */
+.form-label {
+  color: #cdeedb;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Inputs & selects — dark glass fields */
+.form-control,
+.form-select {
+  background: rgba(10, 20, 15, 0.6);
+  color: #eafff2;
+  border: 1px solid rgba(120, 255, 190, 0.28);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: inset 0 0 0.8px rgba(200, 255, 220, 0.22);
+  transition: border-color 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.form-control::placeholder {
+  color: rgba(226, 255, 242, 0.6);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: rgba(14, 26, 19, 0.7);
+  color: #eafff2;
+  border-color: rgba(120, 255, 190, 0.45);
+  box-shadow:
+    0 0 0 0.2rem rgba(56, 239, 125, 0.18),
+    inset 0 0 1px rgba(200, 255, 220, 0.35);
+  outline: none;
+}
+
+/* Checkbox */
+.form-check-input {
+  background-color: rgba(10, 20, 15, 0.65);
+  border: 1px solid rgba(120, 255, 190, 0.35);
+}
+.form-check-input:checked {
+  background-color: #1f8f53;
+  border-color: rgba(120, 255, 190, 0.55);
+  box-shadow: 0 0 10px rgba(56, 239, 125, 0.45);
+}
+.form-check-label {
+  color: #cdeedb;
+}
+
+/* Validation message */
+.text-danger {
+  color: #ffb3b3 !important;
+}
+
+/* Submit button — neon disciplined */
+.btn.btn-primary {
+  background: linear-gradient(180deg, #1f8f53, #176c3f);
+  color: #ffffff;
+  border: 1px solid rgba(56, 239, 125, 0.35);
+  box-shadow:
+    0 10px 20px rgba(23, 108, 63, 0.35),
+    0 0 8px rgba(56, 239, 125, 0.25);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  transition: transform 120ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+.btn.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 12px 22px rgba(23, 108, 63, 0.42),
+    0 0 12px rgba(56, 239, 125, 0.4);
+}
+.btn.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Success alert — mint glass */
+.alert.alert-success {
+  background: linear-gradient(180deg, rgba(56, 239, 125, 0.12), rgba(56, 239, 125, 0.08));
+  color: #eafff2;
+  border: 1px solid rgba(120, 255, 190, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.28),
+    inset 0 0 0.8px rgba(200, 255, 220, 0.35);
+}
+
+/* Spacing refinements */
+.mb-3 { margin-bottom: 1rem !important; }
+.mt-5 { margin-top: 3rem !important; }
+.w-100 { width: 100% !important; }
+
+/* Focus ring — ADA friendly */
+button:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+  outline: 3px solid rgba(167, 243, 208, 0.85);
+  outline-offset: 2px;
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

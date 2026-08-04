@@ -1,0 +1,78 @@
+
+<div class="landing-root">
+  <div class="bg"></div>
+  <div class="scanlines"></div>
+
+  <div class="hud-frame">
+    <div class="brand-row">
+      <span class="brand-dot"></span>
+      <span class="brand-line"></span>
+      <span class="brand-name">Talentlyx ∷ InterviewMe</span>
+    </div>
+
+    <!-- Default Home Page -->
+    <div *ngIf="!showTutorial">
+      <h1 class="title">Orchestrate Your Hiring Multiverse</h1>
+      <p class="subtitle">
+        From quantum scheduling to auto‑generated offer payloads — navigate the talent cosmos with
+        a luminous interface built for speed, clarity, and control.
+      </p>
+
+      <p class="extra-info">
+        Talentlyx is designed for organizations and candidates alike. Whether you are managing
+        large-scale recruitment or preparing for your next big opportunity, our platform ensures
+        transparency, efficiency, and futuristic workflows.
+      </p>
+
+      <!-- Trigger Button -->
+      <div class="tutorial-trigger">
+        <button class="start-btn" (click)="showTutorial = true">
+          Go through once to get started with us
+        </button>
+      </div>
+
+      <!-- Manage / Use Section -->
+      <section class="access-grid">
+        <div class="access-panel left">
+          <div class="badge">BUSINESS</div>
+          <h2 class="access-title">For <span class="emph">Managers</span></h2>
+          <p class="access-desc">
+            Streamline hiring ops, schedule interviews, forward feedback, and automate offer letters
+            with unified control and clarity.
+          </p>
+          <a class="login-btn" [routerLink]="'/manage'">Manage</a>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="access-panel right">
+          <h2 class="access-title">For <span class="emph">Users</span></h2>
+          <p class="access-desc">
+            Upload resumes, track interview progress, view results, and move faster in your hiring journey.
+          </p>
+          <a class="login-btn" [routerLink]="'/use'">Use</a>
+        </div>
+      </section>
+
+      <!-- Chips -->
+      <div class="chips">
+        <div class="chip">⟐ Dynamic Resume Creation</div>
+        <div class="chip">⟐ Feedback Relay</div>
+        <div class="chip">⟐ Dynamic Offer Letter Creation</div>
+        <div class="chip">⟐ Historical Data Management</div>
+      </div>
+    </div>
+
+    <!-- Tutorial Box -->
+    <div class="tutorial-box" *ngIf="showTutorial">
+      <h3>WELCOME USER</h3>
+      <p class="tutorial-text">
+        Get started with 3 easy steps:
+        <br>1. Sign up / Sign in to your account
+        <br>2. Explore your dashboard
+        <br>3. Accomplish tasks with a smooth interface
+      </p>
+      <button class="skip-btn" (click)="skipTutorial()">Skip Tutorial</button>
+    </div>
+  </div>
+</div>
