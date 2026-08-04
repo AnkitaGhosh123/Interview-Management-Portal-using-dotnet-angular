@@ -1,0 +1,293 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  /* Soft vertical gradient (subtle, elegant) */
+  background: linear-gradient(180deg,
+    #fff9e6 0%,
+    #ffe78a 35%,
+    #ffd84d 70%,
+    #fff4cc 100%
+  );
+}
+
+/* Soft vignette to draw focus toward center */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1200px 500px at 50% 10%,
+    rgba(255, 184, 77, 0.22) 0%,
+    rgba(255, 184, 77, 0.10) 35%,
+    rgba(255, 184, 77, 0.02) 65%,
+    transparent 75%
+  ),
+  radial-gradient(800px 360px at 50% 100%,
+    rgba(255, 184, 77, 0.20) 0%,
+    rgba(255, 184, 77, 0.06) 55%,
+    transparent 75%
+  );
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* ===========================================
+   🔶 Offer Decision — Sci‑Fi Corporate Style
+   =========================================== */
+
+/* Card wrapper */
+.offer-decision-container {
+  width: min(720px, 94vw);
+  margin: 40px auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.78); /* glass effect */
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 2px solid rgba(238, 205, 128, 0.9); /* theme border */
+  box-shadow:
+    0 12px 28px rgba(255, 179, 0, 0.35),
+    inset 0 0 18px rgba(255, 184, 77, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Premium perimeter shimmer */
+.offer-decision-container::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ffd84d, #ffb300, #ff8a1f, #ffd84d);
+  background-size: 280% 280%;
+  animation: offerShimmer 9s linear infinite;
+  opacity: 0.20;
+  z-index: -1;
+}
+@keyframes offerShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Title */
+.offer-decision-container h2 {
+  margin: 0 0 18px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ff8a1f;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 12px rgba(255, 184, 77, 0.7);
+  border-bottom: 2px solid rgba(255, 179, 0, 0.4);
+  padding-bottom: 8px;
+}
+
+/* Base pill/message style */
+.offer-decision-container .info-msg,
+.offer-decision-container .accepted-msg,
+.offer-decision-container .rejected-msg,
+.offer-decision-container .processing-msg,
+.offer-decision-container .success-msg,
+.offer-decision-container .error-msg {
+  margin: 12px 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(238, 205, 128, 0.9);
+  box-shadow: 0 6px 16px rgba(255, 179, 0, 0.28);
+  font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #3f2a00;
+  position: relative;
+}
+
+/* Left accent bar */
+.offer-decision-container .info-msg::before,
+.offer-decision-container .accepted-msg::before,
+.offer-decision-container .rejected-msg::before,
+.offer-decision-container .processing-msg::before,
+.offer-decision-container .success-msg::before,
+.offer-decision-container .error-msg::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffd84d, #ff8a1f);
+}
+
+/* Specific palettes */
+.offer-decision-container .info-msg {
+  background: linear-gradient(135deg, #fff4cc, #ffe78a);
+}
+
+.offer-decision-container .accepted-msg {
+  background: linear-gradient(135deg, #ffe78a, #ffd84d, #ffb300);
+  animation: msgGlow 3s ease-in-out infinite;
+}
+
+.offer-decision-container .rejected-msg {
+  background: linear-gradient(135deg, #ffe0c7, #ffc88f, #ffb066);
+  border-color: rgba(255, 138, 31, 0.55);
+}
+
+.offer-decision-container .processing-msg {
+  background: linear-gradient(135deg, #fff4cc, #ffe78a, #ffd84d);
+}
+
+.offer-decision-container .success-msg {
+  background: linear-gradient(135deg, #ffe78a, #ffd84d);
+  color: #3f2a00;
+  animation: msgGlow 3.2s ease-in-out infinite;
+}
+
+.offer-decision-container .error-msg {
+  background: linear-gradient(135deg, #ffe3e3, #ffd1d1);
+  border-color: #ff5c5c;
+  color: #7a0000;
+  box-shadow: 0 4px 12px rgba(255, 92, 92, 0.25);
+}
+
+/* Message glow animation */
+@keyframes msgGlow {
+  0% { box-shadow: 0 0 0 rgba(255, 138, 31, 0.45); }
+  50% { box-shadow: 0 0 18px rgba(255, 138, 31, 0.65); }
+  100% { box-shadow: 0 0 0 rgba(255, 138, 31, 0.45); }
+}
+
+/* ==========================
+   Form styling (decision form)
+   ========================== */
+
+.offer-decision-container form {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.offer-decision-container form > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 244, 204, 0.8), rgba(255, 231, 138, 0.6));
+  border: 1px solid rgba(238, 205, 128, 0.9);
+  box-shadow: 0 4px 12px rgba(255, 179, 0, 0.28);
+  position: relative;
+}
+
+.offer-decision-container form label {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ff8a1f;
+}
+
+.offer-decision-container select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(238, 205, 128, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  color: #3f2a00;
+  font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(255, 179, 0, 0.22) inset, 0 2px 8px rgba(255, 179, 0, 0.22);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.offer-decision-container select:focus {
+  outline: none;
+  border-color: #ffb300;
+  box-shadow:
+    0 0 0 3px rgba(255, 179, 0, 0.25),
+    0 6px 16px rgba(255, 138, 31, 0.35);
+  transform: translateY(-1px);
+}
+
+.offer-decision-container small {
+  grid-column: 2; /* under the select */
+  margin-top: 6px;
+  color: #7a0000;
+  background: rgba(255, 92, 92, 0.15);
+  border: 1px solid #ff5c5c;
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 92, 92, 0.2);
+}
+
+/* Submit button */
+.offer-decision-container button[type="submit"] {
+  justify-self: end;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #ffd84d, #ffb300, #ff8a1f);
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 138, 31, 0.45);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.offer-decision-container button[type="submit"]:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(255, 138, 31, 0.6);
+  filter: brightness(1.05);
+}
+
+.offer-decision-container button[type="submit"]:active {
+  transform: translateY(0) scale(0.998);
+}
+
+.offer-decision-container button[disabled] {
+  opacity: 0.75;
+  cursor: not-allowed;
+  filter: grayscale(10%);
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .offer-decision-container { padding: 18px; border-radius: 18px; }
+  .offer-decision-container h2 { font-size: 1.35rem; letter-spacing: 0.12em; }
+  .offer-decision-container form > div {
+    grid-template-columns: 1fr; /* stack label above select */
+    gap: 10px;
+  }
+  .offer-decision-container button[type="submit"] { justify-self: stretch; }
+}
+
+.back-btn-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: linear-gradient(180deg, #ff9a3c, #ff6f00); /* Orange gradient */
+  color: #fff;
+  font-size: 0.85rem; /* Sleek size */
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(255, 111, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: linear-gradient(180deg, #ffb347, #ff8a1f); /* Lighter orange hover */
+  box-shadow: 0 8px 18px rgba(255, 138, 31, 0.5);
+  transform: translateY(-2px);
+}

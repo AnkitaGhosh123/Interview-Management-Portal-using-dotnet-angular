@@ -1,0 +1,126 @@
+
+<!-- ABOUT HERO -->
+<header class="about-hero">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="eyebrow">About</div>
+    <h1 class="title">We build futuristic systems for real-world impact</h1>
+    <p class="subtitle">
+      From concept to deployment, we design and deliver technology with precision,
+      reliability, and a spark of sci‑fi. Transparent, performant, and human‑centric.
+    </p>
+  </div>
+</header>
+
+<!-- Holographic Circuit Wave (NO grey background) -->
+<div class="divider" aria-hidden="true">
+  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <defs>
+      <!-- Holographic gradient -->
+      <linearGradient id="holo" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00ffd5"/>
+        <stop offset="50%" stop-color="#00a3ff"/>
+        <stop offset="100%" stop-color="#7a00ff"/>
+      </linearGradient>
+      <!-- Circuit line gradient -->
+      <linearGradient id="circuitLine" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#59f3ff"/>
+        <stop offset="100%" stop-color="#b09cff"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Main wave panel (transparent behind) -->
+    <path d="M0,50 C240,90 480,10 720,50 C960,90 1200,10 1440,50 L1440,100 L0,100 Z"
+          fill="url(#holo)" opacity="0.95"/>
+
+    <!-- Circuit traces (no rect background) -->
+    <path d="M0,48 C240,88 480,8 720,48 C960,88 1200,8 1440,48"
+          fill="none" stroke="url(#circuitLine)" stroke-width="1.2" opacity="0.85"/>
+    <path d="M0,56 C260,96 520,16 780,56 C1040,96 1300,16 1560,56"
+          fill="none" stroke="url(#circuitLine)" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Pulsing nodes -->
+    <g fill="#89f3ff">
+      <circle r="2">
+        <animateMotion dur="8s" repeatCount="indefinite"
+          path="M0,48 C240,88 480,8 720,48 C960,88 1200,8 1440,48"/>
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="2">
+        <animateMotion dur="10s" repeatCount="indefinite"
+          path="M0,56 C260,96 520,16 780,56 C1040,96 1300,16 1560,56"/>
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </svg>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="container">
+    <div class="card">
+      <h2>Our Mission</h2>
+      <p>We transform complexity into clarity—engineering solutions that are robust, scalable, and delightful to use.</p>
+      <p class="muted">Security, performance, and accessibility are first‑class citizens in everything we ship.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section>
+  <div class="container">
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Precision</h3>
+        <p class="muted">Well‑architected systems, clean code, predictable outcomes.</p>
+      </div>
+      <div class="card">
+        <h3>Human‑centric</h3>
+        <p class="muted">Design that respects users—clear flows, inclusive access.</p>
+      </div>
+      <div class="card">
+        <h3>Future‑ready</h3>
+        <p class="muted">Optimize for change—modular, testable, observable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM (bind data from TS if you want dynamic) -->
+<section>
+  <div class="container">
+    <h2>Team</h2>
+    <div class="grid cols-2">
+      <!-- Example static items; you can *ngFor over team[] from TS -->
+      <div class="card team-card">
+          <div><strong>Mousumi Dey</strong></div>
+          <div class="role">Graduate Apprentice</div>
+      </div>
+      <div class="card team-card">
+          <div><strong>Ankita Ghosh</strong></div>
+          <div class="role">Graduate Apprentice</div>
+      </div>
+      <div class="card team-card">
+          <div><strong>Priyanka Rakshit</strong></div>
+          <div class="role">Graduate Apprentice</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>Want to collaborate?</h2>
+      <p class="muted">Tell us about your challenge. We’ll help design the right solution.</p>
+      <a class="btn" [routerLink]="'/about-contact'">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <small>© {{ year }} meow Systems · All rights reserved.</small>
+  </div>

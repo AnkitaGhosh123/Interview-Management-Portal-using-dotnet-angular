@@ -1,0 +1,138 @@
+
+/* ===============================
+   🌟 Candidate Dashboard — Sci-Fi Corporate Theme
+   =============================== */
+
+/* Global background with animated gradient + scan lines */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff4cc, #ffe78a, #ffd84d, #ffb300, #ff8a1f);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle scan-line overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Dashboard container */
+.dashboard-container {
+  width: min(720px, 92vw);
+  margin: 40px auto;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  border: 2px solid #eecd80;
+  box-shadow: 0 8px 28px rgba(255, 179, 0, 0.45), inset 0 0 12px rgba(255, 184, 77, 0.3);
+  text-align: center;
+  position: relative;
+}
+
+/* Futuristic angled border glow */
+.dashboard-container::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 184, 77, 0.4);
+  filter: blur(6px);
+  z-index: -1;
+}
+
+/* Title */
+.dashboard-container h2 {
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff8a1f;
+  text-shadow: 0 0 12px rgba(255, 184, 77, 0.7);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(255, 179, 0, 0.4);
+  padding-bottom: 8px;
+}
+
+/* Buttons grid */
+.dashboard-container > div > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 620px) {
+  .dashboard-container > div > div { grid-template-columns: 1fr; }
+}
+
+/* Buttons */
+.dashboard-container button {
+  height: 50px;
+  border-radius: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #ffd84d, #ffb300, #ff8a1f);
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 138, 31, 0.5);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add glowing pulse effect */
+.dashboard-container button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.dashboard-container button:hover::before {
+  opacity: 1;
+}
+
+.dashboard-container button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(255, 138, 31, 0.7);
+}
+
+.dashboard-container button:active {
+  transform: translateY(0);
+}
+
+/* Error message */
+.error {
+  margin-top: 18px;
+  color: #b30000;
+  background: rgba(255, 92, 92, 0.15);
+  border: 1px solid #ff5c5c;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}

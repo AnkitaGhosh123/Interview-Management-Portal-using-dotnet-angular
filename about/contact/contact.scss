@@ -1,0 +1,287 @@
+
+/* ================================
+   Sci‑Fi Purple Theme for Contact
+   ================================ */
+
+/* Color System (adjust to taste) */
+$bg-deep-space: #0b0b1e;
+$bg-nebula: radial-gradient(1200px 600px at 10% 10%, #26124b 0%, rgba(38,18,75,0.15) 40%, transparent 70%),
+            radial-gradient(900px 450px at 85% 30%, #3b145e 0%, rgba(59,20,94,0.1) 45%, transparent 75%),
+            linear-gradient(180deg, #0b0b1e 0%, #0d0c22 100%);
+$purple-core: #9b5cff;        // primary glow
+$purple-iris: #7a2cff;        // button base
+$violet: #b589ff;             // light text accent
+$magenta: #ff4dd6;            // bright accent
+$cyan: #5cf2ff;               // secondary accent
+$glass: rgba(255, 255, 255, 0.08);
+$border: rgba(155, 92, 255, 0.35);
+
+/* Glow utilities */
+@mixin glow($color, $softness: 18px) {
+  box-shadow:
+    0 0 calc($softness * 0.33) rgba($color, 0.6),
+    0 0 calc($softness * 0.66) rgba($color, 0.35),
+    inset 0 0 calc($softness * 0.25) rgba($color, 0.25);
+}
+
+/* Futuristic font suggestion (optional)
+   Ensure your global fonts include something sleek like 'Inter', 'Poppins', or 'Orbitron'.
+*/
+
+/* Global backdrop with starfield */
+.contact {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #eae6ff;
+  position: relative;
+  isolation: isolate;
+  background:
+    $bg-nebula;
+
+  /* Soft vignette and starfield */
+  &::before, &::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  /* Starfield layer */
+  &::before {
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.5) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 50% 30%, rgba(255,255,255,0.45) 50%, transparent 51%),
+      radial-gradient(0.8px 0.8px at 80% 60%, rgba(255,255,255,0.55) 50%, transparent 51%),
+      radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.4) 50%, transparent 51%);
+    opacity: 0.5;
+  }
+  /* Vignette glow */
+  &::after {
+    background: radial-gradient(100vmax 60vmax at 50% 100%, rgba(155,92,255,0.08), transparent 60%);
+    mix-blend-mode: screen;
+  }
+}
+
+/* Header — holographic title with scanline */
+.contact__header {
+  margin-bottom: 1.5rem;
+  text-align: left;
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    letter-spacing: 0.02em;
+    background: linear-gradient(90deg, $violet 0%, #fff 40%, $cyan 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(155,92,255,0.35));
+  }
+
+  .contact__subtitle {
+    margin-top: .5rem;
+    color: rgba(234, 230, 255, 0.78);
+    font-weight: 500;
+  }
+}
+
+/* Grid layout */
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (max-width: 980px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+/* Card — glassmorphism with neon borders */
+.contact-card {
+  background: $glass;
+  border: 1px solid $border;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+
+  /* subtle diagonal hologram sweep */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(155,92,255,0.10),
+      rgba(92,242,255,0.08),
+      rgba(255,77,214,0.08),
+      rgba(155,92,255,0.10)
+    );
+    filter: blur(28px);
+    opacity: 0.35;
+    transform: translateZ(0);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(155,92,255,0.65);
+    @include glow(#9b5cff, 22px);
+  }
+}
+
+/* Card header */
+.contact-card__header {
+  display: flex; flex-direction: column;
+  margin-bottom: .6rem;
+
+  .contact-card__name {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(155,92,255,0.25);
+  }
+
+  .contact-card__position {
+    margin-top: .15rem;
+    font-size: .92rem;
+    color: $violet;
+    opacity: 0.9;
+  }
+}
+
+/* Body fields */
+.contact-card__body {
+  margin-top: .4rem;
+}
+
+.contact-card__field {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: .6rem;
+  align-items: center;
+  margin: .5rem 0;
+
+  .contact-card__label {
+    color: rgba(234, 230, 255, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-card__value {
+    color: #e6dcff;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  .contact-card__link {
+    color: $cyan;
+    text-decoration: none;
+    position: relative;
+
+    &:hover {
+      color: lighten($cyan, 5%);
+      text-shadow: 0 0 10px rgba(92,242,255,0.6);
+    }
+  }
+}
+
+/* Footer CTA button */
+.contact-card__footer {
+  margin-top: .8rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid rgba(122,44,255,0.5);
+  border-radius: 12px;
+  padding: .55rem .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, rgba(122,44,255,0.28) 0%, rgba(122,44,255,0.18) 100%);
+  color: #ffffff;
+  @include glow(#7a2cff, 20px);
+  transition: transform .15s ease, box-shadow .15s ease, background .2s ease, border-color .2s ease;
+
+  &::after {
+    content: '↗';
+    font-size: .95rem;
+    color: $cyan;
+    filter: drop-shadow(0 0 6px rgba(92,242,255,0.6));
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, rgba(122,44,255,0.4) 0%, rgba(122,44,255,0.25) 100%);
+    border-color: rgba(122,44,255,0.85);
+    @include glow(#9b5cff, 28px);
+  }
+}
+
+.btn--primary { /* reserved for semantic variations */ }
+
+/* General info panel */
+.contact__info {
+  margin-top: 1.5rem;
+  border: 1px dashed rgba(155, 92, 255, 0.35);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+  backdrop-filter: blur(8px);
+  padding: 1rem;
+
+  h2 {
+    margin: 0 0 .6rem;
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .contact__info-list {
+    margin: .5rem 0 0;
+    padding-left: 1.2rem;
+
+    li {
+      margin: .35rem 0;
+      color: #eae6ff;
+
+      strong {
+        color: $violet;
+      }
+
+      a {
+        color: $cyan;
+        text-decoration: none;
+        &:hover { text-shadow: 0 0 8px rgba(92,242,255,0.6); }
+      }
+    }
+  }
+}
+
+/* Subtle animated border glow for cards */
+@keyframes borderPulse {
+  0%   { box-shadow: 0 0 0 rgba($purple-core,0.0); }
+  50%  { box-shadow: 0 0 14px rgba($purple-core,0.35); }
+  100% { box-shadow: 0 0 0 rgba($purple-core,0.0); }
+}
+.contact-card:hover {
+  animation: borderPulse 2.8s ease-in-out infinite;
+}
+
+/* Dark-mode respect (already dark), but tweak for system settings if needed */
+@media (prefers-color-scheme: light) {
+  .contact {
+    /* slightly brighter nebula for light-mode users */
+    &::after {
+      background: radial-gradient(100vmax 60vmax at 50% 100%, rgba(155,92,255,0.12), transparent 60%);
+    }
+  }
+}

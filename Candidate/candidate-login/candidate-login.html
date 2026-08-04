@@ -1,0 +1,40 @@
+<div class="login-container">
+  <h2>Candidate Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Email -->
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" formControlName="email" placeholder="Enter your email" />
+      <small *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+        You cannot leave this field empty.
+      </small>
+      <small *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+        Enter a valid email address (must contain '@').
+      </small>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" formControlName="password" placeholder="Enter password" />
+      <small *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+        You cannot leave this field empty.
+      </small>
+      <small *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">
+        Password must be at least 6 characters.
+      </small>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <br>
+  <!-- Forgot Password -->
+  <div class="forgot-password">
+    <button (click)="router.navigate(['/candidate-reset-password'])">Forgot Password?</button>
+  </div>
+
+  <!-- Messages -->
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+</div>

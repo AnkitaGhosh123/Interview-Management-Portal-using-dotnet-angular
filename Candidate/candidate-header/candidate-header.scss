@@ -1,0 +1,47 @@
+
+/* === TALENTLYX Candidate Header — Orange Theme === */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ff9a3c, #ff6f00); /* Orange gradient */
+  padding: 14px 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(255, 111, 0, 0.35);
+  font-family: "Inter", sans-serif;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-links li a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff8e1;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
+  transform: translateY(-2px);
+}

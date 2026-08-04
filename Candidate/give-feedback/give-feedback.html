@@ -1,0 +1,61 @@
+<app-candidate-header></app-candidate-header>
+<div class="feedback-container">
+  <h2>Submit Feedback</h2>
+
+  <!-- Error message for candidate ID or API issues -->
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <!-- If feedback already submitted -->
+  <div *ngIf="feedbackSubmitted" class="info-message">
+    <p>{{ successMessage || 'You have already submitted your feedback.' }}</p>
+  </div>
+
+  <!-- If interview not completed or not assigned -->
+  <div *ngIf="!feedbackSubmitted && (!interviewId || !interviewerId || interviewStatus !== 'Interview Completed')" class="info-message">
+    <p>Sorry! Feedback form is not active yet.</p>
+    <button (click)="showAlert()">Try Later!</button>
+  </div>
+
+  <!-- Feedback form block -->
+  <div *ngIf="!feedbackSubmitted && interviewStatus === 'Interview Completed' && interviewId && interviewerId" class="form-wrapper">
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="feedback-form">
+
+      <!-- Show assigned interviewer name if available -->
+      <div class="form-group" *ngIf="interviewerName">
+        <label>Interviewer:</label>
+        <span>{{ interviewerName }}</span>
+      </div>
+
+      <!-- Comments -->
+      <div class="form-group">
+        <label>Comments:</label>
+        <textarea formControlName="comments"></textarea>
+        <small *ngIf="feedbackForm.get('comments')?.invalid && feedbackForm.get('comments')?.touched">
+          Minimum {{ feedbackForm.get('comments')?.errors?.['minlength']?.requiredLength }} characters required.
+        </small>
+      </div>
+
+      <!-- Rating -->
+      <div class="form-group">
+        <label>Rating:</label>
+        <select formControlName="rating">
+          <option value="">Select Rating</option>
+          <option *ngFor="let r of ratings" [value]="r">{{ r }}</option>
+        </select>
+        <small *ngIf="feedbackForm.get('rating')?.invalid && feedbackForm.get('rating')?.touched">
+          Rating must be between 1 and 5.
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+    </form>
+  </div>
+
+  <!-- Success message after submission -->
+  <div *ngIf="successMessage && feedbackSubmitted" class="success-message">{{ successMessage }}</div>
+<br>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>

@@ -1,0 +1,61 @@
+
+<section class="contact" aria-labelledby="contact-title">
+  <!-- Page Header -->
+  <header class="contact__header">
+    <h1 id="contact-title">Contact</h1>
+    <p class="contact__subtitle">
+      Get in touch with our team. Choose the right contact based on role and expertise.
+    </p>
+  </header>
+
+  <!-- Team Contacts -->
+  <div class="contact__grid" role="list" aria-label="Team contacts">
+    <article class="contact-card" role="listitem" *ngFor="let p of people">
+      <div class="contact-card__header">
+        <h2 class="contact-card__name">{{ p.name }}</h2>
+        <span class="contact-card__position">{{ p.position }}</span>
+      </div>
+
+      <div class="contact-card__body">
+        <div class="contact-card__field">
+          <span class="contact-card__label">Email</span>
+          <a
+            class="contact-card__value contact-card__link"
+            [href]="'mailto:' + p.email"
+            rel="noopener"
+            aria-label="Send email to {{ p.name }}"
+          >
+            {{ p.email }}
+          </a>
+        </div>
+      </div>
+
+      <footer class="contact-card__footer">
+        <a
+          class="btn btn--primary"
+          [href]="'mailto:' + p.email + '?subject=' + encode('Hello ' + p.name)"
+          aria-label="Compose email to {{ p.name }}"
+        >
+          Email {{ p.name.split(' ')[0] }}
+        </a>
+      </footer>
+    </article>
+  </div>
+
+  <!-- General Contact Information -->
+  <aside class="contact__info" aria-labelledby="general-contact-title">
+    <h2 id="general-contact-title">General Contact</h2>
+    <ul class="contact__info-list">
+      <li>
+        <strong>Support:  </strong>
+        <a>support@example.com</a>
+      </li>
+      <li>
+        <strong>Phone:</strong> +91 98765 43210
+      </li>
+      <li>
+        <strong>Office:</strong> Salt Lake Sector V, Kolkata
+      </li>
+
+    </ul>
+  </aside>

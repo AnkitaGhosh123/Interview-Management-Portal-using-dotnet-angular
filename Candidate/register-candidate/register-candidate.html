@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h2>Candidate Registration</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" formControlName="fullName" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Email</label>
+      <input type="email" formControlName="email" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Password</label>
+      <input type="password" formControlName="password" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Confirm Password</label>
+      <input type="password" formControlName="confirmPassword" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Skillset</label>
+      <input type="text" formControlName="skillset" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Total Years of Experience</label>
+      <input type="text" formControlName="totalYearsOfExperience" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Recent Education</label>
+      <input type="text" formControlName="recentEducation" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>University Name</label>
+      <input type="text" formControlName="universityName" class="form-control">
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Average CGPA</label>
+      <input type="text" formControlName="averageCGPA" class="form-control">
+    </div>
+
+
+    <!-- PROJECTS -->
+    <div formArrayName="projects" class="mt-3">
+      <label>Projects</label>
+      <div *ngFor="let p of projects.controls; let i=index">
+        <input type="text" [formControlName]="i" class="form-control mt-1">
+      </div>
+      <button type="button" class="btn btn-secondary mt-2" (click)="addProject()">Add Project</button>
+    </div>
+
+    <!-- INTERNSHIPS -->
+    <div formArrayName="internships" class="mt-3">
+      <label>Internships</label>
+      <div *ngFor="let p of internships.controls; let i=index">
+        <input type="text" [formControlName]="i" class="form-control mt-1">
+      </div>
+      <button type="button" class="btn btn-secondary mt-2" (click)="addInternship()">Add Internship</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4 w-100">Register</button>
+  </form>
+
+  <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{errorMsg}}</div>
+  <div *ngIf="successMsg" class="alert alert-success mt-3">{{successMsg}}</div>
+
+  <div *ngIf="resumeUrl" class="mt-3">
+    <p><strong>Download Resume:</strong></p>
+    <a [href]="resumeUrl" target="_blank" class="btn btn-outline-primary">View Resume PDF</a>
+  </div>
+
+</div>

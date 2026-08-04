@@ -1,0 +1,55 @@
+<app-candidate-header></app-candidate-header>
+<div class="offer-decision-container">
+  <h2>Offer Decision</h2>
+
+  <!-- Interview Not Assigned -->
+  <div *ngIf="resultData?.result === 'NotAssigned'" class="info-msg">
+    Sorry! Your interview is not done yet!
+  </div>
+
+  <!-- Interview Accepted and not already submitted -->
+  <div *ngIf="resultData?.result === 'Accepted' && !resultData?.alreadySubmitted">
+    <p class="accepted-msg">
+      🎉 Congratulations! Offer letter already sent to your email, now inform your decision:
+    </p>
+    <form [formGroup]="decisionForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="decision">Select Decision:</label>
+        <select id="decision" formControlName="decision">
+          <option value="">Select</option>
+          <option value="Accepted">Accept Offer</option>
+          <option value="Rejected">Reject Offer</option>
+        </select>
+        <small *ngIf="decisionForm.get('decision')?.invalid && decisionForm.get('decision')?.touched">
+          Please select Accepted or Rejected.
+        </small>
+      </div>
+      <button type="submit" [disabled]="decisionForm.invalid">Submit Decision</button>
+    </form>
+  </div>
+
+  <!-- Already submitted decision -->
+  <div *ngIf="resultData?.alreadySubmitted" class="info-msg">
+    You have already submitted your decision.
+  </div>
+
+  <!-- Interview Rejected -->
+  <div *ngIf="resultData?.result === 'Rejected'" class="rejected-msg">
+    Sorry! Hope for the next time, thank you for your time.
+  </div>
+
+  <!-- Interview Not Evaluated -->
+  <div *ngIf="resultData?.result === 'NotEvaluated'" class="processing-msg">
+    We are currently processing your result! Thank you for your patience.
+  </div>
+
+  <!-- Messages -->
+  <div *ngIf="successMessage" class="success-msg">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+</div>
+<br>
+<div class="back-btn-wrapper">
+  <button class="btn btn-back" [routerLink]="['/dashboard']" [disabled]="loading">
+    Back to Dashboard
+  </button>
+</div>

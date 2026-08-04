@@ -1,0 +1,33 @@
+<app-candidate-header></app-candidate-header>
+<div class="result-container">
+  <h2>Interview Result</h2>
+
+  <div *ngIf="resultData; else errorBlock">
+    <p><strong>Name:</strong> {{ resultData.name }}</p>
+
+    <ng-container [ngSwitch]="resultData.result">
+      <p *ngSwitchCase="'Accepted'" class="accepted-msg">
+        🎉 Congrats! You cleared the interview.
+      </p>
+      <p *ngSwitchCase="'Rejected'" class="rejected-msg">
+        We regret to inform you that you are not moved forward with next steps. Thank you for your time.
+      </p>
+      <p *ngSwitchCase="'NotEvaluated'" class="processing-msg">
+        We are currently processing your result! Thank you for your patience.
+      </p>
+      <p *ngSwitchDefault>
+        <strong>Result:</strong> {{ resultData.result }}
+      </p>
+    </ng-container>
+    <br>
+    <div class="back-btn-wrapper">
+      <button class="btn btn-back" [routerLink]="['/dashboard']" [disabled]="loading">
+        Back to Dashboard
+      </button>
+    </div>
+  </div>
+
+  <ng-template #errorBlock>
+    <p class="error-msg">{{ errorMessage }}</p>
+  </ng-template>
+</div>

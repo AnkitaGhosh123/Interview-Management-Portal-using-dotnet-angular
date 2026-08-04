@@ -1,0 +1,18 @@
+
+<app-candidate-header></app-candidate-header>
+<div class="dashboard-container">
+  <h2>Candidate Dashboard</h2>
+
+  <div *ngIf="isAuthorized; else accessDenied">
+    <div *ngIf="isAuthorized; else accessDenied">
+      <button (click)="navigate('check-interview-status')">Check Interview Status</button>
+      <button (click)="navigate('give-feedback')">Submit Feedback</button>
+      <button (click)="navigate('check-interview-result')">Check Interview Result</button>
+      <button (click)="navigate('offer-letter-decision')">Offer Letter Decision</button>
+    </div>
+  </div>
+
+  <ng-template #accessDenied>
+    <p class="error">Access Denied: You are not allowed to access this page.</p>
+  </ng-template>
+</div>

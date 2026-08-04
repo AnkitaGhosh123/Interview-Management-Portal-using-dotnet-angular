@@ -1,0 +1,20 @@
+
+<app-candidate-header></app-candidate-header>
+<div class="status-container">
+  <h2>Interview Status</h2>
+
+  <div *ngIf="status; else errorBlock">
+    <p><strong>Name:</strong> {{ candidateName }}</p>
+    <p><strong>Status:</strong> {{ status }}</p>
+  </div>
+
+  <ng-template #errorBlock>
+    <p style="color:red">{{ errorMessage }}</p>
+  </ng-template>
+  <br>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>
