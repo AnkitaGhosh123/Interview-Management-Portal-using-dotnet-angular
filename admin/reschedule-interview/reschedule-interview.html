@@ -1,0 +1,42 @@
+
+<app-admin-header></app-admin-header>
+<div class="container mt-4">
+  <h2 class="mb-3">Reschedule Pool</h2>
+  <p class="text-muted">List of candidates whose interviews are rescheduled</p>
+
+  <!-- ✅ Back button -->
+  <div class="mb-3">
+    <button class="btn btn-secondary" (click)="goBack()">← Back to Dashboard</button>
+  </div>
+
+  <!-- ✅ Table if candidates exist -->
+  <div *ngIf="rescheduledCandidates.length > 0; else noData">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Candidate ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Assigned Interviewer ID</th>
+          <th>Assigned Interviewer Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cand of rescheduledCandidates">
+          <td>{{ cand.candidateId }}</td>
+          <td>{{ cand.candidateName }}</td>
+          <td>{{ cand.candidateEmail }}</td>
+          <td>{{ cand.assignedInterviewerId }}</td>
+          <td>{{ cand.assignedInterviewerName }}</td>
+          <td><span class="badge bg-warning text-dark">{{ cand.interviewStatus }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ No data template -->
+  <ng-template #noData>
+    <p class="text-danger mt-3">{{ backendMessage }}</p>
+  </ng-template>
+</div>

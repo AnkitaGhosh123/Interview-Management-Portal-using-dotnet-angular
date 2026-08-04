@@ -1,0 +1,32 @@
+
+<app-admin-header></app-admin-header>
+<div class="container mt-4">
+  <h2 class="mb-3">Assign Interviewer for {{ selectedCandidate.name }}</h2>
+  <p><b>Skills:</b> {{ selectedCandidate.skillSet }} | <b>Experience:</b> {{ selectedCandidate.totalYearsOfExperience }} years</p>
+
+  <!-- ✅ Back button -->
+  <div class="mb-3">
+    <button class="btn btn-secondary" (click)="goBack()">← Back to Candidate List</button>
+  </div>
+
+  <h4 class="mt-4">List of Suitable Interviewers</h4>
+  <div *ngIf="interviewers.length > 0; else noData">
+    <div *ngFor="let interviewer of interviewers" class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="interviewer" [(ngModel)]="selectedInterviewer" [value]="interviewer">
+      <label class="form-check-label">
+        <b>{{ interviewer.name }}</b> | {{ interviewer.email }} | Skills: {{ interviewer.skillSet }} | Level: {{ interviewer.level }} | Exp: {{ interviewer.yearsOfExperience }} yrs
+      </label>
+    </div>
+
+    <div class="mt-3">
+      <label><b>Select Interview Date:</b></label>
+      <input type="date" class="form-control" [(ngModel)]="selectedDate">
+    </div>
+
+    <button class="btn btn-primary mt-3" (click)="assign()">Assign Interviewer</button>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-danger mt-3">No suitable interviewers found for this candidate.</p>
+  </ng-template>
+</div>

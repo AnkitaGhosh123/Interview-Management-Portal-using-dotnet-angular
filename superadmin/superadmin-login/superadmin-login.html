@@ -1,0 +1,25 @@
+<div class="superadmin-container">
+  <h1 class="title">Welcome SuperAdmin</h1>
+  <p class="subtitle">Please log in to manage requests</p>
+
+  <div class="login-form" *ngIf="!isLoggedIn">
+    <input type="email" [(ngModel)]="email" placeholder="Enter your email" />
+    <input type="password" [(ngModel)]="password" placeholder="Enter your password" />
+    <button (click)="login()" class="btn">Login</button>
+  </div>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <!-- Dashboard -->
+  <!-- <div *ngIf="isLoggedIn" class="dashboard">
+    <h2>SuperAdmin Dashboard</h2>
+    <p>Welcome, {{ user?.fullName }} ({{ user?.email }})</p>
+    <div class="buttons">
+      <button class="action-btn">Approve Admin Request</button>
+      <button class="action-btn">Reject Admin Request</button>
+      <button class="action-btn">Approve Interviewer Request</button>
+      <button class="action-btn">Reject Interviewer Request</button>
+    </div>
+  </div> -->
+
+

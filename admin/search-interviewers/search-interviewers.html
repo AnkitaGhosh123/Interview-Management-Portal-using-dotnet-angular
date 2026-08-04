@@ -1,0 +1,77 @@
+
+<app-admin-header></app-admin-header>
+<!-- search-interviewers.html -->
+<div class="si-container">
+  <div class="si-header">
+    <h2>Search Interviewers</h2>
+    <div class="si-actions">
+      <button class="btn btn-reset" (click)="reset()" [disabled]="loading">Reset</button>
+    </div>
+  </div>
+
+  <form class="si-form" (ngSubmit)="submit()">
+    <div class="form-row">
+      <label for="skill">Skill <span class="req">*</span></label>
+      <input
+        id="skill"
+        type="text"
+        [(ngModel)]="skill"
+        name="skill"
+        placeholder="e.g., Java, .NET, Angular"
+        [disabled]="loading"
+        required
+      />
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-search" type="submit" [disabled]="loading">
+        {{ loading ? 'Searching...' : 'Search' }}
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="si-alert si-alert-error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="si-alert si-alert-success">{{ successMessage }}</div>
+
+  <div class="si-filter-bar" *ngIf="results.length > 0">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      name="searchText"
+      placeholder="Filter results by name, level, skill or ID..."
+      [disabled]="loading"
+    />
+  </div>
+
+  <div class="si-table-wrapper" *ngIf="filteredResults.length > 0">
+    <table class="si-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Interviewer ID</th>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Skill Set</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of filteredResults; let i = index; trackBy: trackById">
+          <td>{{ i + 1 }}</td>
+          <td>{{ r.interviewerId }}</td>
+          <td>{{ r.name }}</td>
+          <td>{{ r.level }}</td>
+          <td>{{ r.skillSet || '—' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="si-empty" *ngIf="!loading && results.length === 0 && !errorMessage">
+    No results yet. Enter a skill and click Search.
+  </div>
+
+  <!-- Bottom Back button -->
+  <div class="si-bottom-bar">
+    <button class="btn btn-back" (click)="goBack()" [disabled]="loading">Back</button>
+  </div>
+</div>

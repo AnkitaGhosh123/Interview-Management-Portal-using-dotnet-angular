@@ -1,0 +1,251 @@
+
+/* ====== Simple Sci‑Fi Panel & Table (Interviewer Requests) — EPIC Background ====== */
+
+/* Theme vars */
+:root {
+  --space-0: #0a0f1f;  /* deep space */
+  --space-1: #0b1433;  /* panel dark */
+  --space-2: #0d1332;  /* panel darker */
+
+  --text-0: #d8ecff;   /* lighter text */
+  --text-dim: #a6c3e6; /* softer dim */
+
+  --cyan: #00ffff;
+  --violet: #9a4dff;
+  --green: #34ffb9;
+  --red: #ff5c7a;
+
+  
+}
+:host {
+  display: block;
+  min-height: 100vh;           /* full viewport height */
+  background-color: #0a0f1f;
+  color: #cfe9ff;
+
+  /* Sci‑fi background */
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(154,77,255,0.12) 0, transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(255,43,240,0.12) 0, transparent 42%),
+    repeating-linear-gradient(0deg, rgba(146,168,200,0.06) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(146,168,200,0.06) 0 1px, transparent 1px 48px);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* ================= EPIC BACKGROUND (component-scoped) ================= */
+/* Scope the epic background to the page container */
+.interviewer-requests,
+div.p-6 {
+  position: relative;
+  isolation: isolate;
+
+  /* Base glass panel */
+  background: rgba(10, 15, 31, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 24px;
+  color: var(--text-0);
+  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+/* Deep space gradient + nebula (behind the panel content) */
+.interviewer-requests::before,
+div.p-6::before {
+  content: '';
+  position: absolute;
+  inset: -40px;                 /* slightly extend beyond borders for glow */
+  z-index: -2;
+  background:
+    /* nebula glows */
+    radial-gradient(1000px 700px at 15% 10%, rgba(154,77,255,0.20), transparent 60%),
+    radial-gradient(900px 600px at 85% 80%, rgba(255,43,240,0.16), transparent 60%),
+    /* cyan vertical haze */
+    linear-gradient(180deg, rgba(0,255,255,0.08), rgba(0,0,0,0) 45%),
+    /* starfield base (subtle speckles) */
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.25), transparent 60%),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.20), transparent 60%),
+    /* deep space base */
+    linear-gradient(180deg, #080f22 0%, #0a1028 60%, #0a0f1f 100%);
+  background-repeat: no-repeat;
+  filter: saturate(110%);
+}
+
+/* Animated starfield layer */
+.interviewer-requests::after,
+div.p-6::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.30), transparent 60%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.25), transparent 60%),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.22), transparent 60%),
+    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.18), transparent 60%);
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.35;
+}
+
+/* Twinkle animation (soft, not distracting) */
+@keyframes twinkle {
+  from { filter: brightness(0.9); opacity: 0.28; transform: translateY(0px); }
+  to   { filter: brightness(1.2); opacity: 0.42; transform: translateY(-0.6px); }
+}
+
+/* Title — lighter text, neon but not heavy */
+.interviewer-requests h2,
+div.p-6 h2 {
+  margin: 0 0 16px 0;
+  font-family: 'Orbitron', system-ui, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aef7ff !important;  /* lighter cyan */
+  font-weight: 600;           /* softer than 700 */
+  text-shadow: 0 0 8px rgba(0,255,255,0.35);
+}
+
+/* ================= TABLE ================= */
+.interviewer-requests table,
+div.p-6 > table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 255, 255, 0.22);
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--space-1), var(--space-2));
+}
+
+/* Header */
+.interviewer-requests thead,
+div.p-6 thead {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.12), rgba(154, 77, 255, 0.10)) !important;
+}
+
+.interviewer-requests th,
+div.p-6 th {
+  padding: 10px 12px !important;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.25) !important;
+  color: #e6f4ff;            /* lighter header text */
+  font-weight: 600;          /* lighter */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+/* Body cells */
+.interviewer-requests td,
+div.p-6 td {
+  padding: 10px 12px !important; /* override Tailwind p-2 */
+  border-bottom: 1px dashed rgba(146, 168, 200, 0.22) !important;
+  color: var(--text-0);
+  font-weight: 400;              /* lighter body */
+}
+
+/* Row striping + hover */
+.interviewer-requests tbody tr:nth-child(odd),
+div.p-6 tbody tr:nth-child(odd) {
+  background: rgba(0, 255, 255, 0.035);
+}
+
+.interviewer-requests tbody tr:hover td,
+div.p-6 tbody tr:hover td {
+  background: rgba(0, 255, 255, 0.055);
+}
+
+/* Actions row */
+.interviewer-requests .flex,
+div.p-6 .flex {
+  display: flex;
+  gap: 10px !important; /* override Tailwind gap-3 */
+}
+
+/* ================= BUTTONS ================= */
+.interviewer-requests button,
+div.p-6 button {
+  border: 1px solid rgba(0, 255, 255, 0.30);
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-weight: 600;                 /* lighter than 700 */
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  color: #eaf7ff !important;        /* lighter button text */
+  background:
+    linear-gradient(135deg, rgba(0, 255, 255, 0.12), rgba(154, 77, 255, 0.10)),
+    linear-gradient(180deg, rgba(16, 22, 58, 0.95), rgba(13, 19, 50, 0.95));
+}
+
+/* Hover glow (soft) */
+.interviewer-requests button:hover,
+div.p-6 button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 8px rgba(0,255,255,0.40),
+    0 0 16px rgba(154,77,255,0.25);
+}
+
+/* Accept (green neon) */
+.interviewer-requests button.bg-green-600,
+div.p-6 button.bg-green-600 {
+  border-color: rgba(52, 255, 185, 0.55) !important;
+  background:
+    linear-gradient(135deg, rgba(52, 255, 185, 0.18), rgba(0, 255, 255, 0.08)),
+    linear-gradient(180deg, rgba(16, 22, 58, 0.95), rgba(13, 19, 50, 0.95)) !important;
+  color: #eaffe9 !important;
+}
+.interviewer-requests button.bg-green-600:hover,
+div.p-6 button.bg-green-600:hover {
+  box-shadow: 0 0 10px rgba(52, 255, 185, 0.45);
+}
+
+/* Reject (red neon) */
+.interviewer-requests button.bg-red-600,
+div.p-6 button.bg-red-600 {
+  border-color: rgba(255, 92, 122, 0.55) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 92, 122, 0.18), rgba(154, 77, 255, 0.08)),
+    linear-gradient(180deg, rgba(16, 22, 58, 0.95), rgba(13, 19, 50, 0.95)) !important;
+  color: #fff2f4 !important;
+}
+.interviewer-requests button.bg-red-600:hover,
+div.p-6 button.bg-red-600:hover {
+  box-shadow: 0 0 10px rgba(255, 92, 122, 0.45);
+}
+
+/* Empty state (colspan=7 for this table) */
+.interviewer-requests td[colspan="7"],
+div.p-6 td[colspan="7"] {
+  text-align: center;
+  color: var(--text-dim) !important;
+  font-weight: 400;
+}
+
+.back-btn-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: linear-gradient(180deg, #0f4c75, #1b262c); /* Dark blue gradient */
+  color: #e0f7fa; /* Light cyan text */
+  font-size: 0.85rem; /* Smaller, elegant */
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 255, 255, 0.35); /* Neon glow */
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: linear-gradient(180deg, #00f7ff, #0f4c75); /* Neon cyan hover */
+  box-shadow: 0 8px 18px rgba(0, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+

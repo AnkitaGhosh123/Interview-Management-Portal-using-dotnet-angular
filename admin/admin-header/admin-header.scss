@@ -1,0 +1,38 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, #d0f0ff, #a8e6ff); /* Light blue gradient */
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(168, 230, 255, 0.6); /* Soft blue glow */
+}
+
+.navbar-brand {
+  color: #0077ff; /* Bright blue for brand */
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(0, 119, 255, 0.4); /* Neon effect */
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #004c99; /* Deep blue for links */
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer; /* ✅ Makes cursor a hand */
+  transition: color 0.2s ease;
+}
+
+.navbar-links li a:hover {
+  color: #00cfff; /* Neon cyan hover */
+  text-shadow: 0 0 8px rgba(0, 207, 255, 0.6);
+}

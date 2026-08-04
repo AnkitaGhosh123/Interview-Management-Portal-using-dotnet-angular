@@ -1,0 +1,40 @@
+
+<app-admin-header></app-admin-header>
+<div class="container mt-4">
+  <h2 class="mb-3">Eligible Candidates for Interview Assignment</h2>
+
+  <!-- ✅ Back button -->
+  <div class="mb-3">
+    <button class="btn btn-secondary" (click)="goBack()">← Back to Dashboard</button>
+  </div>
+
+  <div *ngIf="candidates.length > 0; else noCandidates">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Skills</th>
+          <th>Experience (Years)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cand of candidates">
+          <td data-label="ID">{{ cand.candidateId }}</td>
+          <td data-label="Name">{{ cand.name }}</td>
+          <td data-label="Email">{{ cand.email }}</td>
+          <td data-label="Skills">{{ cand.skillSet }}</td>
+          <td data-label="Experience">{{ cand.totalYearsOfExperience }}</td>
+          <td data-label="Action">
+            <button class="btn btn-success" (click)="navigateToAssign(cand)">Assign Interviewer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noCandidates>
+    <p class="text-danger mt-3">No eligible candidates found.</p>
+  </ng-template>

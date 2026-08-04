@@ -1,0 +1,185 @@
+
+/* ===== TALENTLYX Admin Registration — Sci‑fi Blue Theme (component-scoped) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #eaf4ff;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Deep space base + aurora glows */
+  background:
+    radial-gradient(900px 520px at 12% 12%, rgba(132, 182, 255, 0.16), transparent 60%),
+    radial-gradient(800px 480px at 88% 86%, rgba(63, 129, 255, 0.14), transparent 60%),
+    linear-gradient(160deg, #071a36 0%, #0b2347 40%, #0a2246 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 24px 0; /* gives breathing room for the container */
+}
+
+/* Holographic grid overlay (subtle, animated) */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(54, 214, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 214, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px, 26px 26px;
+  opacity: 0.26;
+  animation: gridShift 10s ease-in-out infinite;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.75), rgba(255,255,255,0.1));
+}
+@keyframes gridShift {
+  0%, 100% { transform: translateY(0); opacity: 0.23; }
+  50%      { transform: translateY(-2px); opacity: 0.32; }
+}
+
+/* Optional tiny stars layer */
+:host::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.12) 1px, transparent 1.2px),
+    radial-gradient(circle at 68% 42%, rgba(255,255,255,0.10) 1px, transparent 1.2px),
+    radial-gradient(circle at 35% 80%, rgba(255,255,255,0.08) 1px, transparent 1.2px);
+  background-size: 180px 180px, 220px 220px, 200px 200px;
+  animation: starDrift 22s linear infinite;
+  opacity: 0.34;
+}
+@keyframes starDrift {
+  0%   { transform: translateY(0) }
+  100% { transform: translateY(-8px) }
+}
+
+/* Container: center and width */
+.container {
+  max-width: 720px;
+}
+
+/* === Heading: crisp, no blur, sci‑fi type === */
+h2 {
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.5vw, 2rem);
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+  color: #eef6ff; /* solid color keeps edges sharp */
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.05),
+    0 0 10px rgba(47,127,255,0.18);
+  text-align: center;
+  position: relative;
+}
+
+/* Accent underline for h2 */
+h2::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 3px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, #84b6ff, #36d6ff, #2f7fff);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(54, 214, 255, 0.33);
+}
+
+/* === Glassy form panel === */
+form {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.16));
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 32px rgba(23, 78, 140, 0.26);
+  padding: 20px;
+}
+
+/* Labels */
+label {
+  color: #cfe8ff;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Inputs: HUD-style with neon focus */
+.form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  color: #eaf4ff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  transition: box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.form-control::placeholder { color: #b8d4ff; opacity: 0.8; }
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(54, 214, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(54, 214, 255, 0.25), 0 0 12px rgba(54, 214, 255, 0.28);
+  color: #fff;
+}
+
+/* Disabled field (Role) */
+.form-control[disabled],
+.form-control:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Spacing helpers from Bootstrap already apply; fine-tune */
+.mb-3 { margin-bottom: 1rem !important; }
+
+/* Submit button: neon blue */
+.btn-primary {
+  background: linear-gradient(180deg, #3a8cff, #114b9a);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 20px rgba(47,127,255,0.35);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(47,127,255,0.55), 0 0 16px rgba(54,214,255,0.28);
+  background: linear-gradient(180deg, #4c98ff, #0f4ea6);
+}
+.btn-primary:disabled {
+  filter: grayscale(14%);
+  opacity: 0.85;
+}
+
+/* Success alert after submission */
+.alert-success {
+  background: linear-gradient(180deg, rgba(0, 180, 120, 0.12), rgba(0, 180, 120, 0.18));
+  color: #eaf4ff;
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 28px rgba(0, 120, 80, 0.25);
+}
+
+/* Center the submitted message block visually */
+.alert-success h4 {
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  color: #d6f7ff;
+}
+
+footer {
+  border-top: 1px solid rgba(134,195,255,0.25);
+  padding-top: 16px;
+  color: #b8d4ff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .container { padding: 0 12px; }
+}

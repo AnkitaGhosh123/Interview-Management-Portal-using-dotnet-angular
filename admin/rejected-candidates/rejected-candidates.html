@@ -1,0 +1,65 @@
+
+<app-admin-header></app-admin-header>
+<!-- rejected-candidates.html -->
+<div class="rc-container">
+  <div class="rc-header">
+    <h2>Rejected Candidates</h2>
+
+    <div class="rc-actions">
+      <button class="btn btn-refresh" (click)="refresh()" [disabled]="loading">
+        {{ loading ? 'Refreshing...' : 'Refresh' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="rc-status">
+    <div class="rc-count">
+      <span class="label">Total Rejected:</span>
+      <span class="value">{{ rejectedCount }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="rc-alert rc-alert-error">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="rc-alert rc-alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="loading" class="rc-loading">
+    <div class="spinner"></div>
+    <span>Loading rejected candidates...</span>
+  </div>
+
+  <div *ngIf="!loading && filteredCandidates.length === 0" class="rc-empty">
+    No rejected candidates found.
+  </div>
+
+  <div *ngIf="!loading && filteredCandidates.length > 0" class="rc-table-wrapper">
+    <table class="rc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Candidate Name</th>
+          <th>Email</th>
+          <th>Interview Date</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filteredCandidates; let i = index; trackBy: trackByIndex">
+          <td>{{ i + 1 }}</td>
+          <td>{{ getCandidateName(row.candidate) }}</td>
+          <td>{{ getCandidateEmail(row.candidate) }}</td>
+          <td>{{ getInterviewDate(row) }}</td>
+          <td>{{ row.result || 'Rejected' }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<br>
+<br>
+  <button class="btn btn-back" [routerLink]="['/admin-dashboard']" [disabled]="loading">
+    Back to Dashboard
+  </button>
+  </div>

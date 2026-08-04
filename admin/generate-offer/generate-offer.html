@@ -1,0 +1,32 @@
+
+<app-admin-header></app-admin-header>
+<div class="offer-letter-container">
+  <h2>Generate Offer Letter</h2>
+
+  <form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Candidate ID:</label>
+      <input type="text" formControlName="candidateId" readonly />
+    </div>
+
+    <div>
+      <label>Candidate Name:</label>
+      <input type="text" formControlName="candidateName" readonly />
+    </div>
+
+    <div>
+      <label>Position:</label>
+      <input type="text" formControlName="position" placeholder="Enter position" />
+    </div>
+
+    <div>
+      <label>Salary:</label>
+      <input type="number" formControlName="salary" placeholder="Enter salary" />
+    </div>
+
+    <button type="submit" [disabled]="offerForm.invalid">Make Offer Letter</button>
+  </form>
+
+  <div *ngIf="successMsg" class="success">{{ successMsg }}</div>
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+</div>

@@ -1,0 +1,59 @@
+
+<app-superadmin-header></app-superadmin-header>
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-6 text-red-700">Rejected Requests</h2>
+
+  <!-- Admin Rejected -->
+  <h3 class="text-xl font-semibold mb-4">Admins</h3>
+  <table class="w-full border border-gray-300 text-left mb-8">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2 border">Full Name</th>
+        <th class="p-2 border">Email</th>
+        <th class="p-2 border">Role</th>
+        <th class="p-2 border">Requested At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of rejectedAdmins">
+        <td class="p-2 border">{{ admin.fullName }}</td>
+        <td class="p-2 border">{{ admin.email }}</td>
+        <td class="p-2 border">Admin</td>
+        <td class="p-2 border">{{ admin.requestedAt | date:'medium' }}</td>
+      </tr>
+      <tr *ngIf="rejectedAdmins.length === 0">
+        <td colspan="4" class="p-4 text-center text-gray-500">No rejected admins.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Interviewer Rejected -->
+  <h3 class="text-xl font-semibold mb-4">Interviewers</h3>
+  <table class="w-full border border-gray-300 text-left">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2 border">Full Name</th>
+        <th class="p-2 border">Email</th>
+        <th class="p-2 border">Role</th>
+        <th class="p-2 border">Requested At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let interviewer of rejectedInterviewers">
+        <td class="p-2 border">{{ interviewer.fullName }}</td>
+        <td class="p-2 border">{{ interviewer.email }}</td>
+        <td class="p-2 border">Interviewer</td>
+        <td class="p-2 border">{{ interviewer.requestedAt | date:'medium' }}</td>
+      </tr>
+      <tr *ngIf="rejectedInterviewers.length === 0">
+        <td colspan="4" class="p-4 text-center text-gray-500">No rejected interviewers.</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/superadmin-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

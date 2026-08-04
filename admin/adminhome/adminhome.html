@@ -1,0 +1,84 @@
+
+<app-admin-header></app-admin-header>
+<div class="admin-home">
+  <h1 class="title">Admin Dashboard</h1>
+  <p class="subtitle">Manage interviews, candidates, records & feedback</p>
+
+  <div class="grid">
+
+    <div class="card" [routerLink]="['/see-interviewers']" tabindex="0">
+      <div class="icon">🎯</div>
+      <h3>Set Max Candidates</h3>
+      <p>Control candidate intake limit</p>
+    </div>
+
+
+    <div class="card" [routerLink]="'/check-all-resumes'" tabindex="0">
+      <div class="icon">📥</div>
+      <h3>Check All Resumes</h3>
+      <p>View and download candidate resumes</p>
+    </div>
+
+    <div class="card" [routerLink]="'/candidate-list'" tabindex="0">
+      <div class="icon">🗂️</div>
+      <h3>Assign Interviews</h3>
+      <p>Assign interviewer for candidate</p>
+    </div>
+
+    <div class="card" [routerLink]="'/reschedule-interview'" tabindex="0">
+      <div class="icon">⏱️</div>
+      <h3>Reschedule Pool</h3>
+      <p>Adjust interview timings</p>
+    </div>
+
+    <div class="card" [routerLink]="'/send-final-result'" tabindex="0">
+      <div class="icon">✅</div>
+      <h3>Final Results</h3>
+      <p>Send final results to candidates</p>
+    </div>
+
+    <div class="card" [routerLink]="'/get-eligible-candidates'" tabindex="0">
+      <div class="icon">📜</div>
+      <h3>Generate Offer Letter</h3>
+      <p>Create offer letters for candidates</p>
+    </div>
+
+    <div class="card" [routerLink]="'/record-rejected'" tabindex="0">
+      <div class="icon">🚫</div>
+      <h3>Rejected Candidates</h3>
+      <p>View rejected candidates</p>
+    </div>
+
+    <div class="card" [routerLink]="'/offer-rejected'" tabindex="0">
+      <div class="icon">❌</div>
+      <h3>Offer Rejected</h3>
+      <p>View candidates who rejected offers</p>
+    </div>
+
+    <div class="card" [routerLink]="'/search-selected-candidates'" tabindex="0">
+      <div class="icon">🔎</div>
+      <h3>Success Results</h3>
+      <p>Search successful candidates</p>
+    </div>
+
+    <div class="card" [routerLink]="'/search-interviewer'" tabindex="0">
+      <div class="icon">🧠</div>
+      <h3>Search Interviewers</h3>
+      <p>Find interviewers by skill</p>
+    </div>
+
+    <div class="card" [routerLink]="'/feedback-list'" tabindex="0">
+      <div class="icon">💬</div>
+      <h3>Feedbacks</h3>
+      <p>View candidate feedbacks</p>
+    </div>
+
+    <div class="card" [routerLink]="'/forward-feedback'" tabindex="0">
+      <div class="icon">📨</div>
+      <h3>Forward Feedback</h3>
+      <p>Send feedback to interviewer</p>
+    </div>
+  </div>
+
+  <div class="footer-note">© Admin</div>
+</div>

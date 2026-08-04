@@ -1,0 +1,193 @@
+
+/* ===== TALENTLYX Admin Login — Sci‑fi Blue Theme (component-scoped via :host) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+/* Page background */
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #eaf4ff;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Deep space + aurora + holographic grid */
+  background:
+    radial-gradient(900px 520px at 12% 12%, rgba(132, 182, 255, 0.16), transparent 60%),
+    radial-gradient(800px 480px at 88% 86%, rgba(63, 129, 255, 0.14), transparent 60%),
+    linear-gradient(160deg, #071a36 0%, #0b2347 40%, #0a2246 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 32px 0;
+}
+
+/* Grid overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(54, 214, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 214, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px, 26px 26px;
+  opacity: 0.26;
+  animation: loginGridShift 10s ease-in-out infinite;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.75), rgba(255,255,255,0.1));
+}
+@keyframes loginGridShift {
+  0%, 100% { transform: translateY(0); opacity: 0.23; }
+  50%      { transform: translateY(-2px); opacity: 0.32; }
+}
+
+/* Stars overlay */
+:host::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.28), transparent 60%),
+    radial-gradient(1px 1px at 68% 62%, rgba(255,255,255,0.20), transparent 60%),
+    radial-gradient(1px 1px at 42% 78%, rgba(255,255,255,0.22), transparent 60%);
+  animation: loginTwinkle 7s ease-in-out infinite alternate;
+  opacity: 0.32;
+}
+@keyframes loginTwinkle {
+  from { filter: brightness(0.9); opacity: 0.26; transform: translateY(0px); }
+  to   { filter: brightness(1.2); opacity: 0.40; transform: translateY(-0.6px); }
+}
+
+/* Container */
+.login-container {
+  max-width: 560px;
+  margin: 0 auto;
+  position: relative;
+  isolation: isolate;
+
+  /* Glass panel */
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.16));
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 32px rgba(23, 78, 140, 0.26);
+  padding: 24px 22px;
+}
+
+/* Heading */
+.login-container h2 {
+  margin: 0 0 16px;
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.6vw, 2rem);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #aef7ff;
+  text-shadow: 0 0 8px rgba(0,255,255,0.35);
+  text-align: center;
+  position: relative;
+}
+.login-container h2::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 3px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, #84b6ff, #36d6ff, #2f7fff);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(54, 214, 255, 0.33);
+}
+
+/* Form structure */
+form {
+  display: grid;
+  gap: 14px;
+}
+
+/* Field group */
+.form-group {
+  display: grid;
+  gap: 6px;
+}
+
+/* Labels */
+label {
+  color: #cfe8ff;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Inputs — HUD style with neon focus */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  color: #eaf4ff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  transition: box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+input::placeholder { color: #b8d4ff; opacity: 0.85; }
+input:focus {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(54, 214, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(54, 214, 255, 0.25), 0 0 12px rgba(54, 214, 255, 0.28);
+  color: #fff;
+}
+
+/* Validation hints */
+small {
+  color: #a6c3e6;
+  padding-left: 2px;
+  font-size: 0.85rem;
+}
+
+/* Button — Neon Blue */
+button[type="submit"] {
+  margin-top: 6px;
+  background: linear-gradient(180deg, #3a8cff, #114b9a);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 20px rgba(47,127,255,0.35);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  width: 100%;
+}
+button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(47,127,255,0.55), 0 0 16px rgba(54,214,255,0.28);
+  background: linear-gradient(180deg, #4c98ff, #0f4ea6);
+}
+button[type="submit"]:disabled {
+  cursor: not-allowed;
+  filter: grayscale(12%) brightness(0.92);
+  opacity: 0.85;
+}
+
+/* Success / Error messages */
+.success, .error {
+  margin-top: 12px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  backdrop-filter: blur(6px);
+}
+.success {
+  background: linear-gradient(180deg, rgba(44, 240, 111, 0.14), rgba(44, 240, 111, 0.18));
+  color: #eafff5;
+  box-shadow: 0 8px 24px rgba(44, 240, 111, 0.18);
+}
+.error {
+  background: linear-gradient(180deg, rgba(255, 90, 106, 0.14), rgba(255, 90, 106, 0.18));
+  color: #fff3f4;
+  box-shadow: 0 8px 24px rgba(255, 90, 106, 0.18);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .login-container { margin: 0 12px; }
+}

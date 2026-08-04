@@ -1,0 +1,72 @@
+
+<app-admin-header></app-admin-header>
+<!-- feedback.html -->
+<div class="fb-container">
+  <div class="fb-header">
+    <h2>Candidate Feedbacks</h2>
+
+    <div class="fb-actions">
+      <button class="btn btn-refresh" (click)="refresh()" [disabled]="loading">
+        {{ loading ? 'Refreshing...' : 'Refresh' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="fb-alert fb-alert-error">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="fb-alert fb-alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="loading" class="fb-loading">
+    <div class="spinner"></div>
+    <span>Loading feedbacks...</span>
+  </div>
+
+  <div *ngIf="!loading && filteredFeedbacks.length === 0" class="fb-empty">
+    No feedbacks found.
+  </div>
+
+  <div *ngIf="!loading && filteredFeedbacks.length > 0" class="fb-table-wrapper">
+    <table class="fb-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Candidate (ID)</th>
+          <th>Interviewer (ID)</th>
+          <th>Interview ID</th>
+          <th>Rating</th>
+          <th>Feedback</th>
+          <th>Submitted At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of filteredFeedbacks; let i = index; trackBy: trackByIndex">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <div class="cell-main">{{ f.candidateName || '—' }}</div>
+            <div class="cell-sub">ID: {{ f.candidateId ?? '—' }}</div>
+          </td>
+          <td>
+            <div class="cell-main">{{ f.interviewerName || '—' }}</div>
+            <div class="cell-sub">ID: {{ f.interviewerId ?? '—' }}</div>
+          </td>
+          <td>{{ f.interviewId ?? '—' }}</td>
+          <td>{{ f.rating ?? '—' }}</td>
+          <td class="feedback-text" [title]="f.feedbackText || ''">
+            {{ f.feedbackText || '—' }}
+          </td>
+          <!-- Show only date using DatePipe -->
+          <td>{{ f.submittedAt | date:'yyyy-MM-dd' }}</td>
+          <!-- Or: <td>{{ f.submittedAt | date:'mediumDate' }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Back button at the bottom -->
+  <div class="fb-bottom-bar">
+    <button class="btn btn-back" (click)="goBack()" [disabled]="loading">Back</button>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+
+/* ===============================
+   🛸 Eligible Candidates — Light Sci‑Fi Blue
+   Component-scoped via :host (works with Angular Emulated encapsulation)
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+/* ---- Page background ---- */
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #1a1a2e;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #eaf6ff, #d9eaff);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle scanlines overlay (sci‑fi vibe) */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(0, 183, 255, 0.20) 1px,
+      rgba(0, 132, 255, 0.26) 2px,
+      rgba(0,0,0,0) 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.10;
+}
+
+/* ---- Outer container panel ---- */
+:host > div {
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 180, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 20px 18px;
+  position: relative;
+}
+
+/* Soft nebula glow behind the panel */
+:host > div::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background:
+    radial-gradient(900px 600px at 12% 10%, rgba(132,182,255,0.18), transparent 60%),
+    radial-gradient(800px 500px at 88% 86%, rgba(63,129,255,0.14), transparent 60%);
+  filter: saturate(108%);
+}
+
+/* ---- Heading ---- */
+:host h2 {
+  margin: 0 0 14px;
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4.6vw, 1.8rem);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #007bff;
+  text-shadow: 0 0 8px rgba(0, 180, 255, 0.35);
+}
+
+/* ================================================
+   ✅ Empty state — first content <div> after <h2>
+   (No HTML changes required)
+   ================================================ */
+:host > div > div:nth-of-type(1) {
+  color: #29498f;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: rgba(0, 183, 255, 0.08);
+  border: 1px dashed rgba(0, 183, 255, 0.32);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* ---- Table ---- */
+:host table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f7fb;
+  box-shadow: 0 0 12px rgba(4, 157, 223, 0.20);
+  margin-top: 8px;
+}
+
+/* Header */
+:host thead {
+  background: linear-gradient(135deg, rgba(0, 183, 255, 0.12), rgba(132,182,255,0.12));
+}
+:host thead th {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 180, 255, 0.25);
+  color: #1a2a5f;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Body cells */
+:host tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px dashed rgba(146,168,200,0.25);
+  color: #243a72;
+}
+
+/* Row striping + hover */
+:host tbody tr:nth-child(odd) { background: rgba(0, 183, 255, 0.045); }
+:host tbody tr:hover td {
+  background: rgba(0, 183, 255, 0.08);
+  transition: background 0.18s ease;
+}
+
+/* Long text wrapping for Email/Skills */
+:host table td:nth-child(2),
+:host table td:nth-child(3) {
+  word-break: break-word;
+}
+
+/* ---- Generate Offer button (Neon Blue) ---- */
+:host button {
+  background: linear-gradient(180deg, #3a8cff, #0f4ea6);
+  border: 1px solid rgba(0, 180, 255, 0.45);
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow:
+    0 0 0 2px rgba(0, 183, 255, 0.22) inset,
+    0 8px 20px rgba(47,127,255,0.30),
+    0 0 12px rgba(0,183,255,0.30);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, filter 0.18s ease;
+}
+:host button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #4c98ff, #0f4ea6);
+  box-shadow:
+    0 0 0 2px rgba(0, 183, 255, 0.32) inset,
+    0 10px 26px rgba(47,127,255,0.50),
+    0 0 16px rgba(0,183,255,0.36);
+}
+:host button:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+:host button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(12%) brightness(0.92);
+  opacity: 0.85;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  :host > div { padding: 16px; }
+  :host h2 { font-size: 1.3rem; letter-spacing: 1px; }
+  :host table thead th, :host table tbody td { padding: 8px 10px; }
+  :host button { width: 100%; }
+}

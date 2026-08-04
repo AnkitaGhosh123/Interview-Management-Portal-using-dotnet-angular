@@ -1,0 +1,65 @@
+
+<app-admin-header></app-admin-header>
+<!-- offer-rejected.html -->
+<div class="or-container">
+  <div class="or-header">
+    <h2>Offer Rejected Candidates</h2>
+
+    <div class="or-actions">
+      <button class="btn btn-refresh" (click)="refresh()" [disabled]="loading">
+        {{ loading ? 'Refreshing...' : 'Refresh' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="or-status">
+    <div class="or-count">
+      <span class="label">Total Offer Rejected:</span>
+      <span class="value">{{ count }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="or-alert or-alert-error">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="or-alert or-alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="loading" class="or-loading">
+    <div class="spinner"></div>
+    <span>Loading offer-rejected candidates...</span>
+  </div>
+
+  <div *ngIf="!loading && filteredCandidates.length === 0" class="or-empty">
+    No candidates found who rejected the offer.
+  </div>
+
+  <div *ngIf="!loading && filteredCandidates.length > 0" class="or-table-wrapper">
+    <table class="or-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Candidate Name</th>
+          <th>Email</th>
+          <th>Interview Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filteredCandidates; let i = index; trackBy: trackByIndex">
+          <td>{{ i + 1 }}</td>
+          <td>{{ getCandidateName(row.candidate) }}</td>
+          <td>{{ getCandidateEmail(row.candidate) }}</td>
+          <td>{{ getInterviewDate(row) }}</td>
+          <td>{{ row.status || 'OfferRejected' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <br>
+  <button class="btn btn-back" [routerLink]="['/admin-dashboard']" [disabled]="loading">
+    Back to Dashboard
+  </button>
+</div>

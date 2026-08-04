@@ -1,0 +1,174 @@
+
+/* ===============================
+   🛸 Generate Offer Letter — Light Sci‑Fi Blue
+   Component-scoped via :host
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+/* ---- Page background ---- */
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #1a1a2e;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #eaf6ff, #d9eaff);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle scanlines overlay (sci‑fi vibe) */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(0, 183, 255, 0.20) 1px,
+      rgba(0, 132, 255, 0.26) 2px,
+      rgba(0,0,0,0) 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.10;
+}
+
+/* ---- Container panel ---- */
+.offer-letter-container {
+  max-width: 640px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 180, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 20px 18px;
+  position: relative;
+}
+
+/* Soft nebula glow behind the panel */
+.offer-letter-container::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background:
+    radial-gradient(900px 600px at 12% 10%, rgba(132,182,255,0.18), transparent 60%),
+    radial-gradient(800px 500px at 88% 86%, rgba(63,129,255,0.14), transparent 60%);
+  filter: saturate(108%);
+}
+
+/* ---- Heading ---- */
+.offer-letter-container h2 {
+  margin: 0 0 14px;
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4.6vw, 1.8rem);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #007bff;
+  text-shadow: 0 0 8px rgba(0, 180, 255, 0.35);
+  text-align: center;
+}
+
+/* ---- Form layout ---- */
+form {
+  display: grid;
+  gap: 14px;
+}
+form > div {
+  display: grid;
+  gap: 6px;
+}
+
+/* Labels */
+label {
+  color: #2a4a8d;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Inputs — HUD style with cyan focus */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  background: #f4f7fb;
+  border: 1px solid rgba(3, 163, 255, 0.35);
+  color: #1a1a2e;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 0 12px rgba(4, 157, 223, 0.20);
+  transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  outline: none;
+}
+input[readonly] {
+  background: #eef6ff;
+  color: #243a72;
+}
+input::placeholder {
+  color: #6b8fc8;
+  opacity: 0.95;
+}
+input:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 12px rgba(0, 183, 255, 0.45);
+  transform: translateY(-1px);
+  background: #ffffff;
+}
+
+/* ---- Submit button (Neon Blue) ---- */
+button[type="submit"] {
+  margin-top: 6px;
+  background: linear-gradient(180deg, #3a8cff, #0f4ea6);
+  border: 1px solid rgba(0, 180, 255, 0.45);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 20px rgba(47,127,255,0.30);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, filter 0.18s ease;
+  width: 100%;
+}
+button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(47,127,255,0.50), 0 0 12px rgba(0,183,255,0.35);
+  background: linear-gradient(180deg, #4c98ff, #0f4ea6);
+}
+button[type="submit"]:disabled {
+  cursor: not-allowed;
+  filter: grayscale(12%) brightness(0.92);
+  opacity: 0.85;
+}
+
+/* ---- Messages ---- */
+.success,
+.error {
+  margin-top: 12px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(134, 195, 255, 0.35);
+  backdrop-filter: blur(6px);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.success {
+  background: linear-gradient(180deg, rgba(44, 240, 111, 0.14), rgba(44, 240, 111, 0.18));
+  color: #0f4e2b;
+  border-color: rgba(44, 240, 111, 0.55);
+  box-shadow: 0 8px 24px rgba(44, 240, 111, 0.18);
+}
+.error {
+  background: linear-gradient(180deg, rgba(255, 90, 106, 0.14), rgba(255, 90, 106, 0.18));
+  color: #6c0f15;
+  border-color: rgba(255, 90, 106, 0.45);
+  box-shadow: 0 8px 24px rgba(255, 90, 106, 0.18);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .offer-letter-container { margin: 0 12px; padding: 16px; }
+}

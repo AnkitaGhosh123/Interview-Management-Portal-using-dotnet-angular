@@ -1,0 +1,231 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+/* Your entire SCSS code remains same */
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #1a1a2e;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #eaf6ff, #d9eaff);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+/* Subtle scanlines overlay */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(0, 183, 255, 0.20) 1px,
+      rgba(0, 132, 255, 0.26) 2px,
+      rgba(0,0,0,0) 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.10;
+}
+ 
+/* ---- Main container (.container) ---- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 180, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 18px 22px;
+  position: relative;
+}
+ 
+/* Soft nebula glow behind the container */
+.container::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background:
+    radial-gradient(900px 600px at 12% 10%, rgba(132,182,255,0.18), transparent 60%),
+    radial-gradient(800px 500px at 88% 86%, rgba(63,129,255,0.14), transparent 60%);
+  filter: saturate(108%);
+}
+ 
+/* ---- Title ---- */
+.container h2 {
+  margin: 0 0 10px;
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 4.6vw, 1.8rem);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #007bff;
+  text-shadow: 0 0 8px rgba(0, 180, 255, 0.35);
+}
+ 
+/* ---- Spacing utilities (to mirror Bootstrap semantics) ---- */
+.mt-4 { margin-top: 1.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+ 
+/* ---- Buttons base ---- */
+.btn {
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, filter 160ms ease;
+}
+ 
+/* Back (Secondary) — Blue glass */
+.btn.btn-secondary {
+  background: linear-gradient(180deg, #3a8cff, #0f4ea6);
+  border-color: rgba(0, 180, 255, 0.45);
+  box-shadow:
+    0 8px 20px rgba(47,127,255,0.30),
+    0 0 12px rgba(0,183,255,0.25);
+  color: #fff;
+}
+.btn.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 26px rgba(47,127,255,0.50),
+    0 0 14px rgba(0,183,255,0.35);
+  background: linear-gradient(180deg, #4c98ff, #0f4ea6);
+}
+ 
+/* Success (Assign Interviewer) — Cyan/Blue */
+.btn.btn-success {
+  background: linear-gradient(180deg, #3ad0ff, #0e78ad);
+  border-color: rgba(0, 183, 255, 0.55);
+  box-shadow:
+    0 0 0 2px rgba(0, 183, 255, 0.25) inset,
+    0 8px 20px rgba(0,183,255,0.30),
+    0 0 14px rgba(0,183,255,0.28);
+}
+.btn.btn-success:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #54d8ff, #14669a);
+  box-shadow:
+    0 0 0 2px rgba(0, 183, 255, 0.35) inset,
+    0 10px 26px rgba(0,183,255,0.50),
+    0 0 18px rgba(0,183,255,0.36);
+}
+ 
+/* ---- Table wrapper ---- */
+.table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f4f7fb;
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  box-shadow: 0 0 12px rgba(4, 157, 223, 0.20);
+}
+ 
+/* Header */
+.table thead.table-dark {
+  background: linear-gradient(135deg, rgba(0, 183, 255, 0.12), rgba(132,182,255,0.12));
+  color: #1a2a5f;
+}
+.table thead th {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(0, 180, 255, 0.25);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+ 
+/* Body cells */
+.table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px dashed rgba(146,168,200,0.25);
+  color: #243a72;
+  vertical-align: middle;
+}
+ 
+/* Row striping + hover glow */
+.table tbody tr:nth-child(odd) { background: rgba(0, 183, 255, 0.045); }
+.table tbody tr:hover td {
+  background: rgba(0, 183, 255, 0.08);
+  transition: background 0.18s ease;
+}
+ 
+/* Make skills look like tags (optional: if you render them as spans) */
+.skill-tag {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #007bff;
+  background: rgba(0, 183, 255, 0.12);
+  border: 1px solid rgba(0, 183, 255, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(0, 183, 255, 0.25);
+}
+ 
+/* Action column keeps buttons tidy */
+.table td:last-child { white-space: nowrap; }
+ 
+/* ---- Empty state ---- */
+.text-danger {
+  color: #c82333 !important;
+  text-shadow: 0 0 6px rgba(195, 21, 21, 0.28);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: rgba(255, 90, 106, 0.10);
+  border: 1px dashed rgba(255, 90, 106, 0.32);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: inline-block;
+}
+ 
+/* ---- Responsive (mobile-friendly table) ---- */
+@media (max-width: 768px) {
+  .container { padding: 14px 16px; }
+  .container h2 { font-size: 1.3rem; letter-spacing: 1px; text-align: center; }
+ 
+  .table, .table thead, .table tbody, .table th, .table td, .table tr {
+    display: block;
+  }
+  .table thead { display: none; } /* hide header on small screens */
+ 
+  .table tr {
+    margin: 0 0 12px;
+    border-radius: 10px;
+    padding: 10px;
+    background: #f4f7fb;
+    border: 1px solid rgba(0, 180, 255, 0.25);
+    box-shadow: 0 0 12px rgba(4, 157, 223, 0.2);
+  }
+ 
+  .table td {
+    border: none;
+    position: relative;
+    padding: 8px 10px 8px 120px; /* space for label */
+    font-size: 13px;
+  }
+ 
+  /* Mobile labels: add data-label in HTML to each td */
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 100px;
+    font-weight: 700;
+    color: #007bff;
+    text-shadow: 0 0 6px rgba(0, 180, 255, 0.25);
+  }
+ 
+  .btn { width: 100%; margin-top: 8px; }
+}

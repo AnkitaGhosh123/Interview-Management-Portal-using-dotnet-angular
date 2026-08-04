@@ -1,0 +1,98 @@
+
+/* ===============================
+   🛸 Reschedule Pool — Light Sci‑Fi Blue
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+/* ---- Page background ---- */
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #eaf6ff, #d9eaff);
+  padding: 20px;
+  position: relative;
+}
+
+/* ---- Container ---- */
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 180, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+/* ---- Heading ---- */
+.container h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #007bff;
+  text-shadow: 0 0 8px rgba(0, 180, 255, 0.35);
+}
+
+/* ---- Back button ---- */
+.btn.btn-secondary {
+  background: transparent;
+  border: 1px solid #00bfff;
+  color: #007bff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.btn.btn-secondary:hover {
+  background: #00bfff;
+  color: #fff;
+  box-shadow: 0 0 12px #00bfff;
+}
+
+/* ---- Table ---- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f7fb;
+  box-shadow: 0 0 12px rgba(4, 157, 223, 0.2);
+}
+
+/* ✅ Override Bootstrap .table-dark */
+.table-dark {
+  background: linear-gradient(135deg, #007bff, #00bfff) !important;
+}
+.table-dark th {
+  color: #fff !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Rows */
+.table tbody td {
+  padding: 10px 12px;
+  color: #243a72;
+}
+.table tbody tr:nth-child(odd) {
+  background-color: rgba(0, 183, 255, 0.045);
+}
+.table tbody tr:hover td {
+  background: rgba(0, 183, 255, 0.08);
+  transition: background 0.18s ease;
+}
+
+/* ---- Status badge ---- */
+.badge.bg-warning {
+  background: linear-gradient(180deg, #ffd86a, #cfa117) !important;
+  color: #1a1a2e !important;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  box-shadow:
+    0 0 0 2px rgba(255, 210, 110, 0.25) inset,
+    0 6px 16px rgba(207, 161, 23, 0.25);
+}

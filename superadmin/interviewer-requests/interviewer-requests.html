@@ -1,0 +1,60 @@
+
+<app-superadmin-header></app-superadmin-header>
+<div class="p-6">
+
+  <h2 class="text-2xl font-bold mb-6 text-blue-700">Interviewer Registration Requests</h2>
+
+  <table class="w-full border border-gray-300 text-left">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2 border">Full Name</th>
+        <th class="p-2 border">Email</th>
+        <th class="p-2 border">Skill Set</th>
+        <th class="p-2 border">Level</th>
+        <th class="p-2 border">Experience</th>
+        <th class="p-2 border">Interview Type</th>
+        <th class="p-2 border">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let req of interviewerRequests">
+        <td class="p-2 border">{{ req.fullName }}</td>
+        <td class="p-2 border">{{ req.email }}</td>
+        <td class="p-2 border">{{ req.skillSet }}</td>
+        <td class="p-2 border">{{ req.level }}</td>
+        <td class="p-2 border">{{ req.yearsOfExperience }} years</td>
+        <td class="p-2 border">{{ req.interviewType }}</td>
+
+        <td class="p-2 border">
+          <div class="flex gap-3">
+            <button
+              class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+              (click)="approve(req.email)">
+              Accept
+            </button>
+
+            <button
+              class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+              (click)="reject(req.email)">
+              Reject
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr *ngIf="interviewerRequests.length === 0">
+        <td colspan="7" class="p-4 text-center text-gray-500">
+          No pending interviewer requests.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="back-btn-wrapper">
+    <button class="btn btn-back" [routerLink]="['/superadmin-dashboard']" [disabled]="loading">
+      Back to Dashboard
+    </button>
+  </div>
+
+</div>

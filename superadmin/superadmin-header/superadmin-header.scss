@@ -1,0 +1,47 @@
+
+/* === TALENTLYX Candidate Header — Neon Blue Theme === */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364); /* Dark gradient */
+  padding: 14px 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 255, 255, 0.35); /* Neon glow */
+  font-family: "Inter", sans-serif;
+}
+
+.navbar-brand {
+  color: #00f7ff; /* Neon cyan */
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #e0f7fa; /* Light cyan */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-links li a:hover {
+  background: rgba(0, 255, 255, 0.18);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  transform: translateY(-2px);
+}

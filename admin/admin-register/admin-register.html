@@ -1,0 +1,38 @@
+
+<div class="container mt-5" *ngIf="!isSubmitted">
+  <h2>Admin Registration</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label>Full Name</label>
+      <input type="text" class="form-control" formControlName="fullName" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Role</label>
+      <input type="text" class="form-control" value="Admin" disabled />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>
+
+<div class="alert alert-success mt-5 text-center" *ngIf="isSubmitted">
+  <h4>Your registration request is submitted and pending to be approved or rejected by SuperAdmin.</h4>
+  <p>Thank you for your patience.</p>
+</div>
+

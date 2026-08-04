@@ -1,0 +1,91 @@
+
+<app-admin-header></app-admin-header>
+<!-- forward-feedback.html -->
+<div class="ff-container">
+  <div class="ff-header">
+    <h2>Forward Feedback to Interviewer</h2>
+
+    <div class="ff-actions">
+      <button class="btn btn-reset" (click)="reset()" [disabled]="loading">Reset</button>
+    </div>
+  </div>
+
+  <form class="ff-form" (ngSubmit)="submit()">
+    <div class="form-row">
+      <label for="interviewerId">Interviewer ID <span class="req">*</span></label>
+      <input
+        id="interviewerId"
+        type="number"
+        [(ngModel)]="interviewerId"
+        name="interviewerId"
+        placeholder="Enter Interviewer ID"
+        [disabled]="loading"
+        required
+        min="1"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-submit" type="submit" [disabled]="loading">
+        {{ loading ? 'Fetching...' : 'Forward' }}
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="ff-alert ff-alert-error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="ff-alert ff-alert-success">{{ successMessage }}</div>
+
+  <div class="ff-toolbar" *ngIf="feedbacks.length > 0">
+    <div class="ff-count">
+      <span class="label">Total Feedbacks:</span>
+      <span class="value">{{ totalFeedbacks }}</span>
+    </div>
+
+    <div class="ff-search">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        name="searchText"
+        placeholder="Filter by Interview ID, Rating, Text, or Submitted At..."
+        [disabled]="loading"
+      />
+    </div>
+  </div>
+
+  <div class="ff-loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <span>Loading...</span>
+  </div>
+
+  <div class="ff-empty" *ngIf="!loading && feedbacks.length === 0 && !errorMessage">
+    No feedbacks to display.
+  </div>
+
+  <div class="ff-table-wrapper" *ngIf="filteredFeedbacks.length > 0">
+    <table class="ff-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Interview ID</th>
+          <th>Rating</th>
+          <th>Feedback</th>
+          <th>Submitted At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of filteredFeedbacks; let i = index; trackBy: trackByIndex">
+          <td>{{ i + 1 }}</td>
+          <td>{{ f.InterviewId ?? '—' }}</td>
+          <td>{{ f.Rating ?? '—' }}</td>
+          <td class="feedback-text" [title]="f.FeedbackText || ''">
+            {{ f.FeedbackText ?? '—' }}
+          </td>
+          <td>{{ formatDate(f.SubmittedAt) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="si-bottom-bar">
+    <button class="btn btn-back" (click)="goBack()" [disabled]="loading">Back</button>
+  </div>
+</div>

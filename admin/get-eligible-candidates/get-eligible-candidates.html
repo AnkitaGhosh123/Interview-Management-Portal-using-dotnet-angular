@@ -1,0 +1,32 @@
+
+<app-admin-header></app-admin-header>
+<div>
+  <h2>Eligible Candidates</h2>
+  <div *ngIf="noCandidates">No candidates found</div>
+  <table *ngIf="candidates.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skills</th>
+        <th>Experience</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of candidates">
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.skillSet }}</td>
+        <td>{{ c.totalYearsOfExperience }}</td>
+        <td>
+          <button (click)="navigateToOfferForm(c)">Generate Offer Letter</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <button class="btn btn-back" [routerLink]="['/admin-dashboard']" [disabled]="loading">
+    Back to Dashboard
+  </button>
+</div>
